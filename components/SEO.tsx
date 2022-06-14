@@ -1,9 +1,10 @@
-import Head from 'next/head';
+import Head from "next/head";
 
-const defaultTitle = 'Leon Omondi – Independent digital designer';
-const defaultDescription = 'Independent Kenyan-based digital designer with over 6 years experience.';
+const defaultTitle = "Leon Omondi – Independent digital designer";
+const defaultDescription =
+  "Independent Kenyan-based digital designer with over 6 years experience.";
 
-const SEO = ({ title = defaultTitle, description = defaultDescription }) => {
+function SEO({ title = defaultTitle, description = defaultDescription }) {
   return (
     <Head>
       <title>{title}</title>
@@ -18,6 +19,6 @@ const SEO = ({ title = defaultTitle, description = defaultDescription }) => {
       <meta property="twitter:image" content="" />
     </Head>
   );
-};
+}
 
 export default SEO;

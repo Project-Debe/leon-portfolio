@@ -1,8 +1,8 @@
 import type { NextPage } from "next";
+import Image from "next/image";
 // import Link from 'next/link';
 
-import { SEO } from "@components";
-import Image from "next/image";
+import { Dropdown, SEO } from "@components";
 
 const Home: NextPage = () => {
   return (
@@ -58,8 +58,8 @@ const Home: NextPage = () => {
             </div>
           </div>
         </div>
-        <div className="relative">
-          <div className="fixed top-6 right-6 z-10 flex space-x-2 text-sm text-white">
+        <div className="relative text-sm text-white">
+          <div className="fixed top-6 right-6 z-10 hidden space-x-2 lg:flex">
             <span>Recent Work</span>
             <span className="-mt-0.5 animate-pulse duration-1000">↓</span>
           </div>
@@ -72,6 +72,10 @@ const Home: NextPage = () => {
                 alt=""
                 priority
               />
+            </div>
+            <div className="absolute bottom-6 right-6 flex items-center space-x-6">
+              <p>Mookh Streaming App Design</p>
+              <Dropdown />
             </div>
           </div>
         </div>
