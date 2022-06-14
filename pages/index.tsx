@@ -93,6 +93,7 @@ const Home: NextPage = () => {
                 objectFit="cover"
                 src="/images/ilara-mobile.png"
                 alt=""
+                priority
                 className="translate-x-[20%]"
               />
             </div>
@@ -108,6 +109,7 @@ const Home: NextPage = () => {
                 objectFit="cover"
                 src="/images/ilara-mobile-2.png"
                 alt=""
+                priority
               />
             </div>
             <div className="absolute bottom-6 right-6 flex items-center space-x-6 text-sm">
@@ -122,6 +124,7 @@ const Home: NextPage = () => {
                 objectFit="cover"
                 src="/images/f-app.png"
                 alt=""
+                priority
               />
             </div>
             <div className="absolute bottom-6 right-6 flex items-center space-x-6 text-sm">
@@ -136,6 +139,7 @@ const Home: NextPage = () => {
                 objectFit="cover"
                 src="/images/f-app-2.png"
                 alt=""
+                priority
               />
             </div>
             <div className="absolute bottom-6 right-6 flex items-center space-x-6 text-sm">
@@ -151,6 +155,7 @@ const Home: NextPage = () => {
                 objectPosition="10%"
                 src="/images/ilara.png"
                 alt=""
+                priority
               />
             </div>
             <div className="absolute bottom-6 right-6 flex items-center space-x-6 text-sm">
