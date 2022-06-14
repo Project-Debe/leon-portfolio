@@ -70,6 +70,7 @@ const Home: NextPage = () => {
                 objectFit="contain"
                 src="/images/mookh.png"
                 alt=""
+                priority
               />
             </div>
           </div>
