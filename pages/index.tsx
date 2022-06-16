@@ -156,7 +156,7 @@ const Home: NextPage = () => {
               />
             </div>
             <div className="absolute bottom-6 right-6 flex items-center space-x-6 text-sm">
-              <p>Ilara Health Monitoring App</p>
+              <p>Patient App Admin Panel</p>
               <Dropdown
                 items={[
                   {
