@@ -122,7 +122,7 @@ const Home: NextPage = () => {
               />
             </div>
           </div>
-          <div className="sticky top-0 flex h-[66.666666vh] items-center bg-[#2847B5] px-[1vw] py-[7.5vw] lg:h-screen">
+          <div className="sticky top-0 flex h-[66.666666vh] items-center bg-[#22389C] px-[1vw] py-[7.5vw] lg:h-screen">
             <div className="aspect-w-16 aspect-h-9 w-full">
               <Image
                 layout="fill"
@@ -216,7 +216,7 @@ const Home: NextPage = () => {
               />
             </div>
           </div>
-          <div className="sticky top-0 flex h-[66.666666vh] items-center bg-[#3F4A60] py-[7.5vw] lg:h-screen">
+          <div className="sticky top-0 flex h-[66.666666vh] items-center bg-[#293141] py-[7.5vw] lg:h-screen">
             <div className="aspect-w-1 aspect-h-1 w-full">
               <Image
                 layout="fill"
@@ -285,7 +285,7 @@ const Home: NextPage = () => {
                     type: "Prototype",
                     url: "https://xd.adobe.com/spec/c9ffc7c0-8ccb-419f-731e-08be6877d2d3-bfce/grid",
                   },
-                  { type: "Website", url: "https://emalify.com" },
+                  { type: "Website" },
                 ]}
               />
             </div>
@@ -313,13 +313,7 @@ const Home: NextPage = () => {
               />
             </div>
           </div>
-          <div
-            className="sticky top-0 flex h-[66.666666vh] items-center py-[7.5vw] lg:h-screen"
-            style={{
-              background:
-                "transparent linear-gradient(180deg, #212E2F 0%, #6A7374 100%) 0% 0% no-repeat padding-box",
-            }}
-          >
+          <div className="sticky top-0 flex h-[66.666666vh] items-center bg-[#212E2F] py-[7.5vw] lg:h-screen">
             <div className="aspect-w-16 aspect-h-9 mx-auto w-1/2">
               <Image
                 layout="fill"
@@ -341,13 +335,7 @@ const Home: NextPage = () => {
               />
             </div>
           </div>
-          <div
-            className="sticky top-0 flex h-[66.666666vh] items-center py-[7.5vw] lg:h-screen"
-            style={{
-              background:
-                "transparent radial-gradient(closest-side at 50% 50%, #404040 0%, #000000 100%) 0% 0% no-repeat padding-box",
-            }}
-          >
+          <div className="sticky top-0 flex h-[66.666666vh] items-center bg-[#151D32] py-[7.5vw] lg:h-screen">
             <div className="aspect-w-1 aspect-h-1 mx-auto w-1/4">
               <Image
                 layout="fill"

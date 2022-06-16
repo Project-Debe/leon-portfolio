@@ -48,10 +48,7 @@ function Dropdown({ items }: DropdownProps) {
                 </button>
               ) : (
                 <a
-                  className={clsx(
-                    "block p-3",
-                    active && "bg-[#707070] text-white"
-                  )}
+                  className={clsx("block p-3", active && "bg-gray-100")}
                   href={url}
                   target="_blank"
                   rel="noreferrer"
