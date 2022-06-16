@@ -13,7 +13,7 @@ type DropdownProps = {
 
 const renderContent = (type: Items["type"]) => (
   <>
-    <p className="text-left">View {type}</p>
+    <p className="mb-1 text-left">View {type}</p>
     <p className="text-left opacity-50">
       {type === "Prototype"
         ? "Interactive wireframes for design visualisation"
@@ -38,7 +38,7 @@ function Dropdown({ items }: DropdownProps) {
           </>
         )}
       </Menu.Button>
-      <Menu.Items className="absolute bottom-11 right-0 w-64 divide-y divide-[#707070] divide-opacity-20 overflow-hidden rounded-lg bg-white text-black focus:outline-none lg:w-80">
+      <Menu.Items className="absolute bottom-12 right-0 w-64 divide-y divide-[#707070] divide-opacity-20 overflow-hidden rounded-lg bg-white text-black focus:outline-none lg:w-80">
         {items.map(({ type, url }, idx) => (
           <Menu.Item key={idx} disabled={!url}>
             {({ disabled, active }) =>
