@@ -145,6 +145,54 @@ const Home: NextPage = () => {
               />
             </div>
           </div>
+          <div className="sticky top-0 flex h-[66.666666vh] items-center bg-[#2847B5] px-[1vw] py-[7.5vw] lg:h-screen">
+            <div className="aspect-w-4 aspect-h-3 mx-auto w-3/4">
+              <Image
+                layout="fill"
+                objectFit="contain"
+                src="/images/desktop-3.png"
+                alt=""
+                style={{ boxShadow: "0px 3px 26px #00000029" }}
+                priority
+              />
+            </div>
+            <div className="absolute bottom-6 right-6 flex items-center space-x-6 text-sm">
+              <p>Ilara Health Monitoring App</p>
+              <Dropdown
+                items={[
+                  {
+                    type: "Prototype",
+                    url: "https://tinyurl.com/427t6e42",
+                  },
+                  { type: "Website" },
+                ]}
+              />
+            </div>
+          </div>
+          <div className="sticky top-0 flex h-[66.666666vh] items-center bg-[#22389C] py-[7.5vw] lg:h-screen">
+            <div className="aspect-w-2 aspect-h-1 w-full">
+              <Image
+                layout="fill"
+                objectFit="cover"
+                objectPosition="10%"
+                src="/images/ilara.png"
+                alt=""
+                priority
+              />
+            </div>
+            <div className="absolute bottom-6 right-6 flex items-center space-x-6 text-sm">
+              <p>Ilara Health EMR/HMIS</p>
+              <Dropdown
+                items={[
+                  {
+                    type: "Prototype",
+                    url: "https://tinyurl.com/27m3pudq",
+                  },
+                  { type: "Website" },
+                ]}
+              />
+            </div>
+          </div>
           <div className="sticky top-0 flex h-[66.666666vh] items-center bg-[#3F4A60] px-[2vw] py-[7.5vw] lg:h-screen">
             <div className="aspect-w-4 aspect-h-3 w-full">
               <Image
@@ -191,24 +239,74 @@ const Home: NextPage = () => {
               />
             </div>
           </div>
-          <div className="sticky top-0 flex h-[66.666666vh] items-center bg-[#22389C] py-[7.5vw] lg:h-screen">
-            <div className="aspect-w-2 aspect-h-1 w-full">
+          <div
+            className="sticky top-0 flex h-[66.666666vh] items-center py-[7.5vw] lg:h-screen"
+            style={{
+              background:
+                "transparent linear-gradient(180deg, #656565 0%, #4B4949 100%) 0% 0% no-repeat padding-box",
+            }}
+          >
+            <div className="aspect-w-16 aspect-h-9 mx-auto w-3/4">
               <Image
                 layout="fill"
-                objectFit="cover"
-                objectPosition="10%"
-                src="/images/ilara.png"
+                objectFit="contain"
+                src="/images/figurations-1.png"
                 alt=""
                 priority
               />
             </div>
             <div className="absolute bottom-6 right-6 flex items-center space-x-6 text-sm">
-              <p>Ilara Health EMR/HMIS</p>
+              <p>Figurations Website</p>
               <Dropdown
                 items={[
                   {
                     type: "Prototype",
-                    url: "https://tinyurl.com/27m3pudq",
+                  },
+                  { type: "Website", url: "https://figurations.xyz" },
+                ]}
+              />
+            </div>
+          </div>
+          <div className="sticky top-0 flex h-[66.666666vh] items-center bg-[#0073ED] py-[7.5vw] lg:h-screen">
+            <div className="aspect-w-16 aspect-h-9 mx-auto w-3/4">
+              <Image
+                layout="fill"
+                objectFit="contain"
+                src="/images/emalify.png"
+                alt=""
+                priority
+              />
+            </div>
+            <div className="absolute bottom-6 right-6 flex items-center space-x-6 text-sm">
+              <p>Emalify Dashboard Redesign</p>
+              <Dropdown
+                items={[
+                  {
+                    type: "Prototype",
+                    url: "https://xd.adobe.com/spec/c9ffc7c0-8ccb-419f-731e-08be6877d2d3-bfce/grid",
+                  },
+                  { type: "Website", url: "https://emalify.com" },
+                ]}
+              />
+            </div>
+          </div>
+          <div className="sticky top-0 flex h-[66.666666vh] items-center bg-[#CF4B40] py-[7.5vw] lg:h-screen">
+            <div className="aspect-w-16 aspect-h-9 mx-auto w-3/4">
+              <Image
+                layout="fill"
+                objectFit="contain"
+                src="/images/cradle.png"
+                alt=""
+                priority
+              />
+            </div>
+            <div className="absolute bottom-6 right-6 flex items-center space-x-6 text-sm">
+              <p>Cradle Arts Website</p>
+              <Dropdown
+                items={[
+                  {
+                    type: "Prototype",
+                    url: "https://xd.adobe.com/view/9fd5fca2-3e2e-4d60-6130-55df21270b28-e9e4/grid",
                   },
                   { type: "Website" },
                 ]}
@@ -257,36 +355,6 @@ const Home: NextPage = () => {
                 src="/images/debe.png"
                 alt=""
                 priority
-              />
-            </div>
-          </div>
-          <div
-            className="sticky top-0 flex h-[66.666666vh] items-center py-[7.5vw] lg:h-screen"
-            style={{
-              background:
-                "transparent linear-gradient(180deg, #656565 0%, #4B4949 100%) 0% 0% no-repeat padding-box",
-            }}
-          >
-            <div className="aspect-w-16 aspect-h-9 mx-auto w-3/4">
-              <Image
-                className="lg:object-bottom"
-                layout="fill"
-                objectFit="contain"
-                objectPosition="bottom"
-                src="/images/figurations-1.png"
-                alt=""
-                priority
-              />
-            </div>
-            <div className="absolute bottom-6 right-6 flex items-center space-x-6 text-sm">
-              <p>Figurations Website</p>
-              <Dropdown
-                items={[
-                  {
-                    type: "Prototype",
-                  },
-                  { type: "Website", url: "https://figurations.xyz" },
-                ]}
               />
             </div>
           </div>
