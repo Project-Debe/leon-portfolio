@@ -261,17 +261,18 @@ const Home: NextPage = () => {
             </div>
           </div>
           <div
-            className="sticky top-0 flex h-[66.666666vh] flex-col items-center py-[7.5vw] lg:h-screen"
+            className="sticky top-0 flex h-[66.666666vh] items-center py-[7.5vw] lg:h-screen"
             style={{
               background:
                 "transparent linear-gradient(180deg, #656565 0%, #4B4949 100%) 0% 0% no-repeat padding-box",
             }}
           >
-            <div className="aspect-w-16 aspect-h-9 w-3/4">
+            <div className="aspect-w-16 aspect-h-9 mx-auto w-3/4">
               <Image
                 className="lg:object-bottom"
                 layout="fill"
                 objectFit="contain"
+                objectPosition="bottom"
                 src="/images/figurations-1.png"
                 alt=""
                 priority
