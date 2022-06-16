@@ -27,7 +27,6 @@ const Home: NextPage = () => {
                 <li className="mb-1">Identity + Visual Language</li>
                 <li className="mb-1">Design Systems</li>
                 <li className="mb-1">UX/UI Design</li>
-                <li className="mb-1">Digital Product Design</li>
                 <li>Illustration</li>
               </ul>
               <ul className="text-right">

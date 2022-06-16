@@ -14,7 +14,7 @@ type DropdownProps = {
 const renderContent = (type: Items["type"]) => (
   <>
     <p className="text-left">View {type}</p>
-    <p className="opacity-50">
+    <p className="text-left opacity-50">
       {type === "Prototype"
         ? "Interactive wireframes for design visualisation"
         : "Explore the implemented designs"}
