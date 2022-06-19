@@ -33,7 +33,7 @@ const Home: NextPage = () => {
                 <li className="mb-1">
                   <a
                     href="/resume.pdf"
-                    className="underline"
+                    className="underline-link"
                     target="_blank"
                     rel="noreferrer"
                   >
@@ -41,14 +41,17 @@ const Home: NextPage = () => {
                   </a>
                 </li>
                 <li className="mb-1">
-                  <a href="mailto:omondi2leon@gmail.com" className="underline">
+                  <a
+                    href="mailto:omondi2leon@gmail.com"
+                    className="underline-link is-link"
+                  >
                     Email
                   </a>
                 </li>
                 <li className="mb-1">
                   <a
                     href="https://www.behance.net/leonomondi"
-                    className="underline"
+                    className="underline-link is-link"
                     target="_blank"
                     rel="noreferrer"
                   >
@@ -58,7 +61,7 @@ const Home: NextPage = () => {
                 <li>
                   <a
                     href="https://linkedin.com/in/leon-omondi-6a3a77101"
-                    className="underline"
+                    className="underline-link is-link"
                     target="_blank"
                     rel="noreferrer"
                   >
