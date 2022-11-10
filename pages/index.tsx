@@ -93,7 +93,6 @@ const Home: NextPage = () => {
                 items={[
                   {
                     type: "Prototype",
-                    url: "https://xd.adobe.com/view/5b072815-7ba8-4140-9003-5408d9ed6ee0-0e54/grid",
                   },
                   { type: "Website" },
                 ]}
