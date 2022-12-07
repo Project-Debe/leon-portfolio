@@ -1,5 +1,5 @@
 import type { NextPage } from "next";
-import Image from "next/image";
+import Image from "next/legacy/image";
 
 import { Dropdown, SEO } from "@components";
 
@@ -89,14 +89,6 @@ const Home: NextPage = () => {
             </div>
             <div className="absolute bottom-6 right-6 flex items-center space-x-6 text-sm">
               <p>Mookh Streaming App Design</p>
-              <Dropdown
-                items={[
-                  {
-                    type: "Prototype",
-                  },
-                  { type: "Website" },
-                ]}
-              />
             </div>
           </div>
           <div className="sticky top-0 flex h-[66.666666vh] items-center bg-[#2847B5] p-[6.5vw] lg:h-screen">
