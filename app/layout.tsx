@@ -11,7 +11,7 @@ const inter = Inter({
 
 const title = 'Leon Omondi | Independent digital designer';
 const description = 'Independent Kenyan-based digital designer with 6+ years experience.';
-const url = 'https://omondileon.com'
+const url = 'https://omondileon.com';
 
 export const metadata: Metadata = {
   title,
@@ -30,12 +30,12 @@ export const metadata: Metadata = {
     site: '@123manchild',
     card: 'summary_large_image',
   },
-  themeColor: '#0c0c0c'
+  themeColor: '#0c0c0c',
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={cn('text-screen-sm sm:text-screen',inter.variable )}>
+    <html lang="en" className={cn('text-screen-sm sm:text-screen', inter.variable)}>
       <body>{children}</body>
     </html>
   );
