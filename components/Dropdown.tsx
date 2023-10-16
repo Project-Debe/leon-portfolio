@@ -1,6 +1,6 @@
 import { Menu } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
-import clsx from "clsx";
+import { cn } from "@/lib/utils";
 
 type Items = {
   type: "Prototype" | "Website";
@@ -22,7 +22,7 @@ const renderContent = (type: Items["type"]) => (
   </>
 );
 
-function Dropdown({ items }: DropdownProps) {
+export default function Dropdown({ items }: DropdownProps) {
   return (
     <Menu as="div" className="relative normal-case">
       <Menu.Button className="flex items-center space-x-1 rounded-full px-4 py-2.5 ring-1 ring-white hover:bg-white hover:bg-opacity-50">
@@ -30,7 +30,7 @@ function Dropdown({ items }: DropdownProps) {
           <>
             <span>More</span>
             <ChevronDownIcon
-              className={clsx(
+              className={cn(
                 "h-4 w-4 transition-transform duration-300",
                 open && "rotate-180"
               )}
@@ -48,7 +48,7 @@ function Dropdown({ items }: DropdownProps) {
                 </button>
               ) : (
                 <a
-                  className={clsx("block p-3", active && "bg-gray-100")}
+                  className={cn("block p-3", active && "bg-gray-100")}
                   href={url}
                   target="_blank"
                   rel="noreferrer"
@@ -62,6 +62,4 @@ function Dropdown({ items }: DropdownProps) {
       </Menu.Items>
     </Menu>
   );
-}
-
-export default Dropdown;
+};
