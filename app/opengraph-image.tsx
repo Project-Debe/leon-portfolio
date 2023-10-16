@@ -13,6 +13,9 @@ export const size = {
 
 // Image generation
 export default async function Image() {
+  // Font
+  const satoshiBold = fetch(new URL('./Satoshi-Bold.ttf', import.meta.url)).then((res) => res.arrayBuffer());
+
   return new ImageResponse(
     (
       // ImageResponse JSX element
@@ -35,6 +38,14 @@ export default async function Image() {
       // For convenience, we can re-use the exported opengraph-image
       // size config to also set the ImageResponse's width and height.
       ...size,
+      fonts: [
+        {
+          name: 'Satoshi',
+          data: await satoshiBold,
+          style: 'normal',
+          weight: 700,
+        },
+      ],
     }
   );
 }

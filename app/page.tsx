@@ -66,7 +66,7 @@ export default function Leon() {
             </div>
           </div>
         </div>
-        <div className="sticky top-0 bg-[#2847B5] h-[66.666666vh] sm:h-screen grid place-items-center px-6 sm:px-[11.5vh]">
+        <div className="sticky top-0 bg-[#2847B5] h-[66.666666vh] sm:h-screen grid place-items-center px-6 sm:px-[11.5vh] overflow-hidden">
           <div className="w-full sm:w-[75vh]">
             <div className="aspect-w-[3840] aspect-h-[3773] translate-x-[20%]">
               <Image src={IlaraMobile} alt="" fill className="object-cover" />
