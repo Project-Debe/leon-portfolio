@@ -73,7 +73,7 @@ export default function Homepage() {
       </div>
       <div className="order-1 flex-1 uppercase text-white">
         <div className="sticky top-0 grid h-[66.666666vh] place-items-center bg-[#293241] px-6 sm:h-screen sm:px-[11.5vh]">
-          <div className="w-[70%] sm:w-[80%]">
+          <div className="w-[70%] sm:w-[70vh]">
             <div className="aspect-h-[3831] aspect-w-[3169]">
               <Image
                 src={Mookh}
@@ -84,17 +84,22 @@ export default function Homepage() {
               />
             </div>
           </div>
-          <div className="absolute bottom-8 right-6">
+          <div className="absolute right-6 top-8">
             <p>Mookh Streaming App Design</p>
           </div>
         </div>
         <div className="sticky top-0 grid h-[66.666666vh] place-items-center overflow-hidden bg-[#2847B5] px-6 sm:h-screen sm:px-[11.5vh]">
           <div className="w-full sm:w-[75vh]">
-            <div className="aspect-h-[3773] aspect-w-[3840] translate-x-[20%]">
-              <Image src={IlaraMobile} alt="" fill className="object-cover" />
+            <div className="aspect-h-[3773] aspect-w-[3840]">
+              <Image
+                src={IlaraMobile}
+                alt=""
+                fill
+                className="translate-x-[20%] translate-y-[5%] object-cover"
+              />
             </div>
           </div>
-          <div className="absolute bottom-5 right-6 flex items-center space-x-6 max-sm:text-sm">
+          <div className="absolute right-6 top-6 flex items-center space-x-6 max-sm:text-sm">
             <p>Ilara Health Monitoring App</p>
             <Dropdown
               items={[
@@ -113,7 +118,7 @@ export default function Homepage() {
               <Image src={IlaraMobile2} alt="" fill className="object-cover" />
             </div>
           </div>
-          <div className="absolute bottom-5 right-6 flex items-center space-x-6 max-sm:text-sm">
+          <div className="absolute right-6 top-6 flex items-center space-x-6 max-sm:text-sm">
             <p>Ilara Health Monitoring App</p>
             <Dropdown
               items={[
@@ -132,7 +137,7 @@ export default function Homepage() {
               <Image src={Desktop} alt="" fill className="object-cover" />
             </div>
           </div>
-          <div className="absolute bottom-5 right-6 flex items-center space-x-6 max-sm:text-sm">
+          <div className="absolute right-6 top-6 flex items-center space-x-6 max-sm:text-sm">
             <p>Patient App Admin Panel</p>
             <Dropdown
               items={[
@@ -151,7 +156,7 @@ export default function Homepage() {
               <Image src={Ilara} alt="" fill className="object-cover" />
             </div>
           </div>
-          <div className="absolute bottom-5 right-6 flex items-center space-x-6 max-sm:text-sm">
+          <div className="absolute right-6 top-6 flex items-center space-x-6 max-sm:text-sm">
             <p>Ilara Health EMR/HMIS</p>
             <Dropdown
               items={[
@@ -164,13 +169,18 @@ export default function Homepage() {
             />
           </div>
         </div>
-        <div className="sticky top-0 grid h-[66.666666vh] place-items-center bg-[#3F4A60] px-6 sm:h-screen">
-          <div className="w-full">
-            <div className="aspect-h-3 aspect-w-4">
-              <Image src={FApp} alt="" fill className="object-cover" />
+        <div className="sticky top-0 grid h-[66.666666vh] place-items-center overflow-hidden bg-[#3F4A60] px-6 sm:h-screen">
+          <div className="w-full sm:w-[70vh]">
+            <div className="aspect-h-[473] aspect-w-[1024]">
+              <Image
+                src={FApp}
+                alt=""
+                fill
+                className="scale-[180%] object-cover sm:scale-[220%]"
+              />
             </div>
           </div>
-          <div className="absolute bottom-5 right-6 flex items-center space-x-6 max-sm:text-sm">
+          <div className="absolute right-6 top-6 flex items-center space-x-6 max-sm:text-sm">
             <p>F-App Fitness Tracking App</p>
             <Dropdown
               items={[
@@ -183,13 +193,18 @@ export default function Homepage() {
             />
           </div>
         </div>
-        <div className="sticky top-0 grid h-[66.666666vh] place-items-center bg-[#293141] px-6 sm:h-screen">
-          <div className="w-full sm:w-[90%]">
-            <div className="aspect-h-1 aspect-w-1">
-              <Image src={FApp2} alt="" fill className="object-cover" />
+        <div className="sticky top-0 grid h-[66.666666vh] place-items-center overflow-hidden bg-[#293141] px-6 sm:h-screen">
+          <div className="w-full sm:w-[70vh]">
+            <div className="aspect-h-[821] aspect-w-[1280]">
+              <Image
+                src={FApp2}
+                alt=""
+                fill
+                className="scale-[180%] object-cover sm:translate-y-[15%] sm:scale-[250%]"
+              />
             </div>
           </div>
-          <div className="absolute bottom-5 right-6 flex items-center space-x-6 max-sm:text-sm">
+          <div className="absolute right-6 top-6 flex items-center space-x-6 max-sm:text-sm">
             <p>F-App Fitness Tracking App</p>
             <Dropdown
               items={[
@@ -214,7 +229,7 @@ export default function Homepage() {
               <Image src={Figurations} alt="" fill className="object-cover" />
             </div>
           </div>
-          <div className="absolute bottom-5 right-6 flex items-center space-x-6 max-sm:text-sm">
+          <div className="absolute right-6 top-6 flex items-center space-x-6 max-sm:text-sm">
             <p>Figurations Website</p>
             <Dropdown
               items={[
@@ -232,7 +247,7 @@ export default function Homepage() {
               <Image src={Emalify} alt="" fill className="object-cover" />
             </div>
           </div>
-          <div className="absolute bottom-5 right-6 flex items-center space-x-6 max-sm:text-sm">
+          <div className="absolute right-6 top-6 flex items-center space-x-6 max-sm:text-sm">
             <p>Emalify Dashboard Redesign</p>
             <Dropdown
               items={[
@@ -251,7 +266,7 @@ export default function Homepage() {
               <Image src={Cradle} alt="" fill className="object-cover" />
             </div>
           </div>
-          <div className="absolute bottom-5 right-6 flex items-center space-x-6 max-sm:text-sm">
+          <div className="absolute right-6 top-6 flex items-center space-x-6 max-sm:text-sm">
             <p>Cradle Arts Website</p>
             <Dropdown
               items={[
@@ -279,7 +294,7 @@ export default function Homepage() {
           </div>
         </div>
         <div className="sticky top-0 grid h-[66.666666vh] place-items-center bg-[#151D32] px-6 sm:h-screen">
-          <div className="w-1/2">
+          <div className="w-1/3">
             <div className="aspect-h-[841] aspect-w-[1324]">
               <Image src={Debe} alt="" fill className="object-cover" />
             </div>
