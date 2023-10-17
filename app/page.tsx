@@ -17,7 +17,7 @@ import Debe from "@/images/debe.png";
 
 export default function Homepage() {
   return (
-    <div className="sm:flex">
+    <main className="sm:flex">
       <div className="sticky top-0 order-2 flex h-screen max-w-[32.25rem] flex-col justify-between space-y-4 bg-[#0C0C0C] px-6 py-8 text-white">
         <div className="flex items-center space-x-2">
           <div className="h-4 w-4 animate-pulse rounded-full bg-[#F45500]" />
@@ -42,34 +42,36 @@ export default function Homepage() {
           <li>Identity + Visual Language</li>
           <li>Illustration</li>
         </ul>
-        <ul className="flex space-x-6 text-xl/none tracking-tight">
-          <li>
-            <a href="/resume.pdf" target="_blank" rel="noreferrer">
-              About
-            </a>
-          </li>
-          <li>
-            <a href="mailto:omondi2leon@gmail.com">Email</a>
-          </li>
-          <li>
-            <a
-              href="https://www.behance.net/leonomondi"
-              target="_blank"
-              rel="noreferrer"
-            >
-              Behance
-            </a>
-          </li>
-          <li>
-            <a
-              href="https://linkedin.com/in/leon-omondi-6a3a77101"
-              target="_blank"
-              rel="noreferrer"
-            >
-              LinkedIn
-            </a>
-          </li>
-        </ul>
+        <footer>
+          <ul className="flex space-x-6 text-xl/none tracking-tight">
+            <li>
+              <a href="/resume.pdf" target="_blank" rel="noreferrer">
+                About
+              </a>
+            </li>
+            <li>
+              <a href="mailto:omondi2leon@gmail.com">Email</a>
+            </li>
+            <li>
+              <a
+                href="https://www.behance.net/leonomondi"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Behance
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://linkedin.com/in/leon-omondi-6a3a77101"
+                target="_blank"
+                rel="noreferrer"
+              >
+                LinkedIn
+              </a>
+            </li>
+          </ul>
+        </footer>
       </div>
       <div className="order-1 flex-1 uppercase text-white">
         <div className="sticky top-0 grid h-[66.666666vh] place-items-center bg-[#293241] px-6 sm:h-screen sm:px-[11.5vh]">
@@ -301,6 +303,6 @@ export default function Homepage() {
           </div>
         </div>
       </div>
-    </div>
+    </main>
   );
 }
