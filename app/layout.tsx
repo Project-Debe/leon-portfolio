@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { Analytics } from "@vercel/analytics/react";
 
 import { cn } from "@/lib/utils";
 import "@/styles/global.css";
@@ -51,7 +52,10 @@ export default function RootLayout({
       lang={locale}
       className={cn("text-screen-sm sm:text-screen", inter.variable)}
     >
-      <body>{children}</body>
+      <body>
+        {children}
+        <Analytics />
+      </body>
     </html>
   );
 }
