@@ -28,7 +28,7 @@ export default function Homepage() {
         <h1 className="text-4xl/[2.375rem] tracking-tight">
           Independent digital designer © <br />
           <span className="text-[#9D9D9D]">
-            Six years working on digital interfaces for start-ups.
+            6+ years working on digital interfaces for start-ups.
           </span>
         </h1>
         <p className="text-xl/6 tracking-tight">
