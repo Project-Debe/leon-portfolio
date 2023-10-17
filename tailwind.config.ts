@@ -11,7 +11,7 @@ module.exports = {
       },
       fontSize: {
         screen: "clamp(0.4673125rem, 1.10546875vw, 1rem)",
-        "screen-sm": "clamp(0.75rem, 2vh, 1rem)",
+        "screen-sm": "clamp(0.6875rem, 3.1707vw, 1.8125rem)",
       },
       letterSpacing: {
         tight: "-.01em",

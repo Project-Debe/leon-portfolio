@@ -1,4 +1,3 @@
 Optimize images 'sizes' prop
-Optimize 'text-screen' and 'text-screen-sm' class to work on all screen sizes
 Make sure you are using the correct html tags
 Add domain to google search console

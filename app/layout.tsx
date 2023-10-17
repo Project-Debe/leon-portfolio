@@ -50,7 +50,7 @@ export default function RootLayout({
   return (
     <html
       lang={locale}
-      className={cn("text-screen-sm sm:text-screen", inter.variable)}
+      className={cn("text-screen-sm landscape:text-screen", inter.variable)}
     >
       <body>
         {children}

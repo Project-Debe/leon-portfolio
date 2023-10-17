@@ -40,7 +40,7 @@ export default function Dropdown({ items }: DropdownProps) {
           </>
         )}
       </Menu.Button>
-      <Menu.Items className="absolute right-0 top-14 w-64 divide-y divide-[#707070] divide-opacity-20 overflow-hidden rounded-lg bg-white text-black focus:outline-none lg:w-80">
+      <Menu.Items className="absolute right-0 top-14 w-64 divide-y divide-[#707070] divide-opacity-20 overflow-hidden rounded-lg bg-white text-black focus:outline-none landscape:w-80">
         {items.map(({ type, url }, idx) => (
           <Menu.Item key={idx} disabled={!url}>
             {({ disabled, active }) =>

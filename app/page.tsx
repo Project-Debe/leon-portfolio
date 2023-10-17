@@ -17,7 +17,7 @@ import Debe from "@/images/debe.png";
 
 export default function Homepage() {
   return (
-    <main className="sm:flex">
+    <main className="landscape:flex">
       <div className="sticky top-0 order-2 flex h-screen max-w-[32.25rem] flex-col justify-between space-y-4 bg-[#0C0C0C] px-6 py-8 text-white">
         <div className="flex items-center space-x-2">
           <div className="h-4 w-4 animate-pulse rounded-full bg-[#F45500]" />
@@ -74,8 +74,8 @@ export default function Homepage() {
         </footer>
       </div>
       <div className="order-1 flex-1 uppercase text-white">
-        <div className="sticky top-0 grid h-[66.666666vh] place-items-center bg-[#293241] px-6 sm:h-screen sm:px-[11.5vh]">
-          <div className="w-[70%] sm:w-[70vh]">
+        <div className="sticky top-0 grid h-[66.666666vh] place-items-center overflow-hidden bg-[#293241] px-6 sm:h-screen">
+          <div className="w-[70%] landscape:w-[70vh]">
             <div className="aspect-h-[3831] aspect-w-[3169]">
               <Image
                 src={Mookh}
@@ -90,8 +90,8 @@ export default function Homepage() {
             <p>Mookh Streaming App Design</p>
           </div>
         </div>
-        <div className="sticky top-0 grid h-[66.666666vh] place-items-center overflow-hidden bg-[#2847B5] px-6 sm:h-screen sm:px-[11.5vh]">
-          <div className="w-full sm:w-[75vh]">
+        <div className="sticky top-0 grid h-[66.666666vh] place-items-center overflow-hidden bg-[#2847B5] px-6 sm:h-screen">
+          <div className="w-full landscape:w-[70vh]">
             <div className="aspect-h-[3773] aspect-w-[3840]">
               <Image
                 src={IlaraMobile}
@@ -114,7 +114,7 @@ export default function Homepage() {
             />
           </div>
         </div>
-        <div className="sticky top-0 grid h-[66.666666vh] place-items-center bg-[#22389c] px-6 sm:h-screen">
+        <div className="sticky top-0 grid h-[66.666666vh] place-items-center overflow-hidden bg-[#22389c] px-6 sm:h-screen">
           <div className="w-full">
             <div className="aspect-h-9 aspect-w-16">
               <Image src={IlaraMobile2} alt="" fill className="object-cover" />
@@ -133,7 +133,7 @@ export default function Homepage() {
             />
           </div>
         </div>
-        <div className="sticky top-0 grid h-[66.666666vh] place-items-center bg-[#2847B5] px-6 sm:h-screen">
+        <div className="sticky top-0 grid h-[66.666666vh] place-items-center overflow-hidden bg-[#2847B5] px-6 sm:h-screen">
           <div className="w-[90%]">
             <div className="aspect-h-8 aspect-w-15">
               <Image src={Desktop} alt="" fill className="object-cover" />
@@ -152,7 +152,7 @@ export default function Homepage() {
             />
           </div>
         </div>
-        <div className="sticky top-0 grid h-[66.666666vh] place-items-center bg-[#22389C] px-6 sm:h-screen">
+        <div className="sticky top-0 grid h-[66.666666vh] place-items-center overflow-hidden bg-[#22389C] px-6 sm:h-screen">
           <div className="w-full">
             <div className="aspect-h-[487] aspect-w-[1280]">
               <Image src={Ilara} alt="" fill className="object-cover" />
@@ -172,13 +172,13 @@ export default function Homepage() {
           </div>
         </div>
         <div className="sticky top-0 grid h-[66.666666vh] place-items-center overflow-hidden bg-[#3F4A60] px-6 sm:h-screen">
-          <div className="w-full sm:w-[70vh]">
+          <div className="w-full landscape:w-[70vh]">
             <div className="aspect-h-[473] aspect-w-[1024]">
               <Image
                 src={FApp}
                 alt=""
                 fill
-                className="scale-[180%] object-cover sm:scale-[220%]"
+                className="scale-[180%] object-cover landscape:scale-[220%]"
               />
             </div>
           </div>
@@ -196,13 +196,13 @@ export default function Homepage() {
           </div>
         </div>
         <div className="sticky top-0 grid h-[66.666666vh] place-items-center overflow-hidden bg-[#293141] px-6 sm:h-screen">
-          <div className="w-full sm:w-[70vh]">
+          <div className="w-full landscape:w-[70vh]">
             <div className="aspect-h-[821] aspect-w-[1280]">
               <Image
                 src={FApp2}
                 alt=""
                 fill
-                className="scale-[180%] object-cover sm:translate-y-[15%] sm:scale-[250%]"
+                className="scale-[180%] object-cover sm:translate-y-[15%] landscape:scale-[250%]"
               />
             </div>
           </div>
@@ -243,7 +243,7 @@ export default function Homepage() {
             />
           </div>
         </div>
-        <div className="sticky top-0 grid h-[66.666666vh] place-items-center bg-[#0073ED] px-6 sm:h-screen">
+        <div className="sticky top-0 grid h-[66.666666vh] place-items-center overflow-hidden bg-[#0073ED] px-6 sm:h-screen">
           <div className="w-full sm:w-[90%]">
             <div className="aspect-h-[89] aspect-w-[160]">
               <Image src={Emalify} alt="" fill className="object-cover" />
@@ -262,7 +262,7 @@ export default function Homepage() {
             />
           </div>
         </div>
-        <div className="sticky top-0 grid h-[66.666666vh] place-items-center bg-[#CF4B40] px-6 sm:h-screen">
+        <div className="sticky top-0 grid h-[66.666666vh] place-items-center overflow-hidden bg-[#CF4B40] px-6 sm:h-screen">
           <div className="w-full sm:w-[90%]">
             <div className="aspect-h-[89] aspect-w-[160]">
               <Image src={Cradle} alt="" fill className="object-cover" />
@@ -281,21 +281,21 @@ export default function Homepage() {
             />
           </div>
         </div>
-        <div className="sticky top-0 grid h-[66.666666vh] place-items-center bg-[#212E2F] px-6 sm:h-screen">
+        <div className="sticky top-0 grid h-[66.666666vh] place-items-center overflow-hidden bg-[#212E2F] px-6 sm:h-screen">
           <div className="w-full sm:w-[90%]">
             <div className="aspect-h-[225] aspect-w-[557]">
               <Image src={OpticlearLogo} alt="" fill className="object-cover" />
             </div>
           </div>
         </div>
-        <div className="sticky top-0 grid h-[66.666666vh] place-items-center bg-[#E5E5E5] px-6 sm:h-screen">
+        <div className="sticky top-0 grid h-[66.666666vh] place-items-center overflow-hidden bg-[#E5E5E5] px-6 sm:h-screen">
           <div className="w-full sm:w-[90%]">
             <div className="aspect-h-[29] aspect-w-[48]">
               <Image src={Opticlear} alt="" fill className="object-cover" />
             </div>
           </div>
         </div>
-        <div className="sticky top-0 grid h-[66.666666vh] place-items-center bg-[#151D32] px-6 sm:h-screen">
+        <div className="sticky top-0 grid h-[66.666666vh] place-items-center overflow-hidden bg-[#151D32] px-6 sm:h-screen">
           <div className="w-1/3">
             <div className="aspect-h-[841] aspect-w-[1324]">
               <Image src={Debe} alt="" fill className="object-cover" />
