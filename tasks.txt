@@ -1,3 +1,0 @@
-Optimize images 'sizes' prop
-Make sure you are using the correct html tags
-Add domain to google search console

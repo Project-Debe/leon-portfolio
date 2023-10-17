@@ -18,7 +18,7 @@ import Debe from "@/images/debe.png";
 export default function Homepage() {
   return (
     <main className="landscape:flex">
-      <div className="sticky top-0 order-2 flex h-screen max-w-[32.25rem] flex-col justify-between space-y-4 bg-[#0C0C0C] px-6 py-8 text-white">
+      <div className="sticky top-0 order-2 flex h-[90vh] max-w-[32.25rem] flex-col justify-between space-y-4 bg-[#0C0C0C] px-6 py-8 text-white landscape:h-screen">
         <div className="flex items-center space-x-2">
           <div className="h-4 w-4 animate-pulse rounded-full bg-[#F45500]" />
           <p className="text-[1.375rem]/none tracking-tight">
