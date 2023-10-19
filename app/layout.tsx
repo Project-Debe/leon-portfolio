@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import type { WebSite, WithContext } from "schema-dts";
 import { Inter } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 
@@ -13,8 +14,7 @@ const inter = Inter({
 const title = "Leon Omondi | Independent digital designer";
 const description =
   "Independent digital designer with 6+ years experience working on digital interfaces for start-ups. Currently based in Nairobi, Kenya.";
-const url = "https://omondileon.com";
-const locale = "en";
+const url = "https://omondileon.com/";
 
 export const metadata: Metadata = {
   title,
@@ -30,16 +30,23 @@ export const metadata: Metadata = {
     url,
     siteName: "Leon Omondi",
     type: "website",
-    locale,
+    locale: "en_US",
   },
   twitter: {
     title,
     description,
     site: "@123manchild",
-    creator: "@123manchild",
     card: "summary_large_image",
   },
   themeColor: "#0c0c0c",
+};
+
+const jsonLd: WithContext<WebSite> = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "Leon Omondi",
+  alternateName: "Leono",
+  url,
 };
 
 export default function RootLayout({
@@ -49,11 +56,15 @@ export default function RootLayout({
 }) {
   return (
     <html
-      lang={locale}
+      lang="en"
       className={cn("text-screen-sm landscape:text-screen", inter.variable)}
     >
       <body>
         {children}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
         <Analytics />
       </body>
     </html>

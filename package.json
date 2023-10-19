@@ -16,6 +16,7 @@
     "next": "latest",
     "react": "latest",
     "react-dom": "latest",
+    "schema-dts": "^1.1.2",
     "sharp": "latest",
     "tailwind-merge": "latest"
   },
