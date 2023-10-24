@@ -1,5 +1,9 @@
 import Search from "@/components/Search";
 
 export default function Portal() {
-  return <Search />;
+  return (
+    <main className="grid h-screen place-items-center">
+      <Search />
+    </main>
+  );
 }

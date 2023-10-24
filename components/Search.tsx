@@ -1,15 +1,11 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import {
-  CalendarIcon,
-  EnvelopeClosedIcon,
-  FaceIcon,
-  GearIcon,
-  PersonIcon,
-  RocketIcon,
-} from "@radix-ui/react-icons";
+import { useEffect, useState } from "react";
+import { UserPlusIcon, UsersIcon } from "@heroicons/react/24/outline";
 
+import { cn } from "@/lib/utils";
+import Logo from "@/components/icons/Logo";
+import { Button } from "@/components/ui/button";
 import {
   CommandDialog,
   CommandEmpty,
@@ -17,12 +13,18 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
-  CommandSeparator,
-  CommandShortcut,
 } from "@/components/ui/command";
+
+const exampleQueries = [
+  "What are my appointments for today?",
+  "Give me a list of the most recent patients.",
+];
 
 export default function Search() {
   const [open, setOpen] = useState(false);
+  const [search, setSearch] = useState("");
+  const [pages, setPages] = useState([]);
+  const page = pages[pages.length - 1];
 
   useEffect(() => {
     const down = (e: KeyboardEvent) => {
@@ -37,43 +39,93 @@ export default function Search() {
   }, []);
 
   return (
-    <CommandDialog open={open} onOpenChange={setOpen}>
-      <CommandInput placeholder="Type a command or search..." />
-      <CommandList>
-        <CommandEmpty>No results found.</CommandEmpty>
-        <CommandGroup heading="Suggestions">
-          <CommandItem>
-            <CalendarIcon className="mr-2 h-4 w-4" />
-            <span>Calendar</span>
-          </CommandItem>
-          <CommandItem>
-            <FaceIcon className="mr-2 h-4 w-4" />
-            <span>Search Emoji</span>
-          </CommandItem>
-          <CommandItem>
-            <RocketIcon className="mr-2 h-4 w-4" />
-            <span>Launch</span>
-          </CommandItem>
-        </CommandGroup>
-        <CommandSeparator />
-        <CommandGroup heading="Settings">
-          <CommandItem>
-            <PersonIcon className="mr-2 h-4 w-4" />
-            <span>Profile</span>
-            <CommandShortcut>⌘P</CommandShortcut>
-          </CommandItem>
-          <CommandItem>
-            <EnvelopeClosedIcon className="mr-2 h-4 w-4" />
-            <span>Mail</span>
-            <CommandShortcut>⌘B</CommandShortcut>
-          </CommandItem>
-          <CommandItem>
-            <GearIcon className="mr-2 h-4 w-4" />
-            <span>Settings</span>
-            <CommandShortcut>⌘S</CommandShortcut>
-          </CommandItem>
-        </CommandGroup>
-      </CommandList>
-    </CommandDialog>
+    <>
+      <Button
+        variant="outline"
+        className={cn(
+          "relative h-9 w-full justify-start rounded-[0.5rem] text-sm text-muted-foreground sm:pr-12 md:w-40 lg:w-64",
+        )}
+        onClick={() => setOpen(true)}
+      >
+        <span className="hidden lg:inline-flex">Search anything...</span>
+        <span className="inline-flex lg:hidden">Search...</span>
+        <kbd className="pointer-events-none absolute right-1.5 top-2 hidden h-5 select-none items-center gap-1 rounded border bg-muted px-1.5 font-mono text-[10px] font-medium opacity-100 sm:flex">
+          <span className="text-xs">⌘</span>K
+        </kbd>
+      </Button>
+      <CommandDialog open={open} onOpenChange={setOpen}>
+        <CommandInput
+          value={search}
+          onValueChange={setSearch}
+          placeholder="Type a command or search..."
+        />
+        <div className="flex space-x-2 p-3">
+          <Button onClick={() => setPages([])} variant="secondary" size="xs">
+            Home
+          </Button>
+
+          {!!page && (
+            <Button
+              onClick={() => setPages([...pages, page])}
+              variant="secondary"
+              size="xs"
+              className="capitalize"
+            >
+              {page}
+            </Button>
+          )}
+        </div>
+        <CommandList>
+          <CommandEmpty>No results found.</CommandEmpty>
+          {!page && (
+            <>
+              <CommandGroup heading="Patients">
+                <CommandItem onSelect={() => setPages([...pages, "patients"])}>
+                  <UsersIcon className="mr-2" />
+                  <span>Search Patients...</span>
+                </CommandItem>
+                <CommandItem>
+                  <UserPlusIcon className="mr-2" />
+                  <span>Add New Patient</span>
+                </CommandItem>
+              </CommandGroup>
+              <CommandGroup heading="Help">
+                <CommandItem
+                  onSelect={() => setPages([...pages, "help"])}
+                  className="group"
+                >
+                  <Logo className="mr-1 !h-6 !w-6 transition-transform duration-300 group-hover:-rotate-[360deg] group-hover:scale-125" />
+                  <span>Ask Ilara AI{!!search ? `:${search}` : "..."}</span>
+                </CommandItem>
+              </CommandGroup>
+            </>
+          )}
+
+          {page === "patients" && (
+            <CommandGroup heading="Suggested Filters">
+              <CommandItem>
+                <UsersIcon className="mr-2" />
+                <span>Search Patients{!!search ? `:${search}` : "..."}</span>
+              </CommandItem>
+              <CommandItem>
+                <UserPlusIcon className="mr-2" />
+                <span>Add New Patient</span>
+              </CommandItem>
+            </CommandGroup>
+          )}
+
+          {page === "help" && (
+            <CommandGroup heading="How can I help?">
+              {exampleQueries.map((query) => (
+                <CommandItem key={query} className="group">
+                  <Logo className="mr-1 !h-6 !w-6 transition-transform duration-300 group-hover:-rotate-[360deg] group-hover:scale-125" />
+                  <span>{query}</span>
+                </CommandItem>
+              ))}
+            </CommandGroup>
+          )}
+        </CommandList>
+      </CommandDialog>
+    </>
   );
 }
