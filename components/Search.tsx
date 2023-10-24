@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { UserPlusIcon, UsersIcon } from "@heroicons/react/24/outline";
+import { useTheme } from "next-themes";
 
 import { cn } from "@/lib/utils";
 import Logo from "@/components/icons/Logo";
@@ -14,16 +14,25 @@ import {
   CommandItem,
   CommandList,
 } from "@/components/ui/command";
+import {
+  ArrowRightIcon,
+  DesktopIcon,
+  MoonIcon,
+  PersonIcon,
+  SunIcon,
+} from "@radix-ui/react-icons";
 
 const exampleQueries = [
-  "What are my appointments for today?",
-  "Give me a list of the most recent patients.",
+  "What causes Acute cholecystitis?",
+  "Medicine to prescribe to patients with chest pain.",
+  "Similarities and Differences between Flu and COVID-19​",
 ];
 
 export default function Search() {
+  const { setTheme } = useTheme();
   const [open, setOpen] = useState(false);
   const [search, setSearch] = useState("");
-  const [pages, setPages] = useState([]);
+  const [pages, setPages] = useState<Array<string>>([]);
   const page = pages[pages.length - 1];
 
   useEffect(() => {
@@ -57,7 +66,7 @@ export default function Search() {
         <CommandInput
           value={search}
           onValueChange={setSearch}
-          placeholder="Type a command or search..."
+          placeholder="What do you need?"
         />
         <div className="flex space-x-2 p-3">
           <Button onClick={() => setPages([])} variant="secondary" size="xs">
@@ -81,13 +90,45 @@ export default function Search() {
             <>
               <CommandGroup heading="Patients">
                 <CommandItem onSelect={() => setPages([...pages, "patients"])}>
-                  <UsersIcon className="mr-2" />
+                  <PersonIcon className="mr-2" />
                   <span>Search Patients...</span>
                 </CommandItem>
                 <CommandItem>
-                  <UserPlusIcon className="mr-2" />
+                  <ArrowRightIcon className="mr-2" />
                   <span>Add New Patient</span>
                 </CommandItem>
+              </CommandGroup>
+              <CommandGroup heading="Settings">
+                {!search ? (
+                  <CommandItem onSelect={() => setPages([...pages, "theme"])}>
+                    <DesktopIcon className="mr-2" />
+                    <span>Change Theme...</span>
+                  </CommandItem>
+                ) : (
+                  <>
+                    <CommandItem
+                      onSelect={() => setTheme("light")}
+                      className="group"
+                    >
+                      <MoonIcon className="mr-2" />
+                      <span>Change Theme to Light</span>
+                    </CommandItem>
+                    <CommandItem
+                      onSelect={() => setTheme("dark")}
+                      className="group"
+                    >
+                      <SunIcon className="mr-2" />
+                      <span>Change Theme to Dark</span>
+                    </CommandItem>
+                    <CommandItem
+                      onSelect={() => setTheme("system")}
+                      className="group"
+                    >
+                      <DesktopIcon className="mr-2" />
+                      <span>Change Theme to System</span>
+                    </CommandItem>
+                  </>
+                )}
               </CommandGroup>
               <CommandGroup heading="Help">
                 <CommandItem
@@ -95,7 +136,7 @@ export default function Search() {
                   className="group"
                 >
                   <Logo className="mr-1 !h-6 !w-6 transition-transform duration-300 group-hover:-rotate-[360deg] group-hover:scale-125" />
-                  <span>Ask Ilara AI{!!search ? `:${search}` : "..."}</span>
+                  <span>Ask Ilara AI...</span>
                 </CommandItem>
               </CommandGroup>
             </>
@@ -104,24 +145,66 @@ export default function Search() {
           {page === "patients" && (
             <CommandGroup heading="Suggested Filters">
               <CommandItem>
-                <UsersIcon className="mr-2" />
-                <span>Search Patients{!!search ? `:${search}` : "..."}</span>
+                <Button variant="secondary" size="xs" className="mr-2">
+                  gender:
+                </Button>
+                <span>patient gender</span>
               </CommandItem>
               <CommandItem>
-                <UserPlusIcon className="mr-2" />
-                <span>Add New Patient</span>
+                <Button variant="secondary" size="xs" className="mr-2">
+                  age range:
+                </Button>
+                <span>patient age range</span>
+              </CommandItem>
+              <CommandItem>
+                <Button variant="secondary" size="xs" className="mr-2">
+                  registration date:
+                </Button>
+                <span>date of registration</span>
+              </CommandItem>
+              <CommandItem>
+                <Button variant="secondary" size="xs" className="mr-2">
+                  visit:
+                </Button>
+                <span>type of visit</span>
+              </CommandItem>
+              <CommandItem>
+                <Button variant="secondary" size="xs" className="mr-2">
+                  tag:
+                </Button>
+                <span>category of tag</span>
               </CommandItem>
             </CommandGroup>
           )}
 
           {page === "help" && (
-            <CommandGroup heading="How can I help?">
+            <CommandGroup heading="Examples">
               {exampleQueries.map((query) => (
                 <CommandItem key={query} className="group">
                   <Logo className="mr-1 !h-6 !w-6 transition-transform duration-300 group-hover:-rotate-[360deg] group-hover:scale-125" />
                   <span>{query}</span>
                 </CommandItem>
               ))}
+            </CommandGroup>
+          )}
+
+          {page === "theme" && (
+            <CommandGroup heading="Change Theme">
+              <CommandItem onSelect={() => setTheme("light")} className="group">
+                <MoonIcon className="mr-2" />
+                <span>Change Theme to Light</span>
+              </CommandItem>
+              <CommandItem onSelect={() => setTheme("dark")} className="group">
+                <SunIcon className="mr-2" />
+                <span>Change Theme to Dark</span>
+              </CommandItem>
+              <CommandItem
+                onSelect={() => setTheme("system")}
+                className="group"
+              >
+                <DesktopIcon className="mr-2" />
+                <span>Change Theme to System</span>
+              </CommandItem>
             </CommandGroup>
           )}
         </CommandList>

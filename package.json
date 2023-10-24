@@ -19,6 +19,7 @@
     "clsx": "^2.0.0",
     "cmdk": "^0.2.0",
     "next": "latest",
+    "next-themes": "^0.2.1",
     "react": "latest",
     "react-dom": "latest",
     "schema-dts": "^1.1.2",

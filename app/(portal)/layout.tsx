@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 
 import "./portal.css";
+import { ThemeProvider } from "@/components/theme-provider";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -15,7 +16,10 @@ export const metadata: Metadata = {
   title,
   description,
   authors: [{ name: "Sam Kasyoki", url: "https://github.com/sam10105" }],
-  themeColor: "#0c0c0c",
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#fff" },
+    { media: "(prefers-color-scheme: dark)", color: "#020817" },
+  ],
 };
 
 export default function RootLayout({
@@ -25,7 +29,16 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={inter.variable}>
-      <body>{children}</body>
+      <body>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+        </ThemeProvider>
+      </body>
     </html>
   );
 }
