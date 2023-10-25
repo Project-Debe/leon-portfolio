@@ -1,11 +1,11 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useTheme } from "next-themes";
 
 import { cn } from "@/lib/utils";
 import Logo from "@/components/icons/Logo";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import {
   CommandDialog,
   CommandEmpty,
@@ -29,6 +29,7 @@ const exampleQueries = [
 
 export default function Search() {
   const { setTheme } = useTheme();
+  const inputRef = useRef<HTMLInputElement>(null);
   const [open, setOpen] = useState(false);
   const [search, setSearch] = useState("");
   const [pages, setPages] = useState<Array<string>>([]);
@@ -46,9 +47,12 @@ export default function Search() {
     return () => document.removeEventListener("keydown", down);
   }, []);
 
+  useEffect(() => {
+    inputRef.current?.focus();
+  }, [page]);
+
   const onClose = () => {
     setSearch("");
-    setPages([]);
     setOpen(false);
   };
 
@@ -67,9 +71,9 @@ export default function Search() {
           <span className="text-xs">⌘</span>K
         </kbd>
       </Button>
-      <CommandDialog open={open} onOpenChange={onClose}>
+      <CommandDialog page={page} open={open} onOpenChange={onClose}>
         <CommandInput
-          autoFocus
+          ref={inputRef}
           value={search}
           onValueChange={setSearch}
           placeholder="What do you need?"
@@ -160,9 +164,14 @@ export default function Search() {
                 <CommandItem onSelect={() => setSearch("gender:")}>
                   <div className="flex w-full items-center justify-between">
                     <div>
-                      <Button variant="secondary" size="xs" className="mr-2">
+                      <span
+                        className={cn(
+                          "mr-2",
+                          buttonVariants({ variant: "secondary", size: "xs" }),
+                        )}
+                      >
                         gender:
-                      </Button>
+                      </span>
                       <span>patient gender</span>
                     </div>
                     <span className="text-muted-foreground">gender:male</span>
@@ -171,28 +180,48 @@ export default function Search() {
               ) : (
                 <>
                   <CommandItem onSelect={() => setSearch("gender:male")}>
-                    <Button variant="secondary" size="xs" className="mr-2">
+                    <span
+                      className={cn(
+                        "mr-2",
+                        buttonVariants({ variant: "secondary", size: "xs" }),
+                      )}
+                    >
                       gender:male
-                    </Button>
+                    </span>
                   </CommandItem>
                   <CommandItem onSelect={() => setSearch("gender:female")}>
-                    <Button variant="secondary" size="xs" className="mr-2">
+                    <span
+                      className={cn(
+                        "mr-2",
+                        buttonVariants({ variant: "secondary", size: "xs" }),
+                      )}
+                    >
                       gender:female
-                    </Button>
+                    </span>
                   </CommandItem>
                   <CommandItem onSelect={() => setSearch("gender:unknown")}>
-                    <Button variant="secondary" size="xs" className="mr-2">
+                    <span
+                      className={cn(
+                        "mr-2",
+                        buttonVariants({ variant: "secondary", size: "xs" }),
+                      )}
+                    >
                       gender:unkwown
-                    </Button>
+                    </span>
                   </CommandItem>
                 </>
               )}
               <CommandItem onSelect={() => setSearch("age:")}>
                 <div className="flex w-full items-center justify-between">
                   <div>
-                    <Button variant="secondary" size="xs" className="mr-2">
+                    <span
+                      className={cn(
+                        "mr-2",
+                        buttonVariants({ variant: "secondary", size: "xs" }),
+                      )}
+                    >
                       age:
-                    </Button>
+                    </span>
                     <span>patient age or range</span>
                   </div>
                   <span className="text-muted-foreground">age:22</span>
@@ -202,9 +231,14 @@ export default function Search() {
                 <CommandItem onSelect={() => setSearch("date:")}>
                   <div className="flex w-full items-center justify-between">
                     <div>
-                      <Button variant="secondary" size="xs" className="mr-2">
+                      <span
+                        className={cn(
+                          "mr-2",
+                          buttonVariants({ variant: "secondary", size: "xs" }),
+                        )}
+                      >
                         date:
-                      </Button>
+                      </span>
                       <span>date of registration</span>
                     </div>
                     <span className="text-muted-foreground">
@@ -215,28 +249,48 @@ export default function Search() {
               ) : (
                 <>
                   <CommandItem onSelect={() => setSearch("date:yesterday")}>
-                    <Button variant="secondary" size="xs" className="mr-2">
+                    <span
+                      className={cn(
+                        "mr-2",
+                        buttonVariants({ variant: "secondary", size: "xs" }),
+                      )}
+                    >
                       date:yesterday
-                    </Button>
+                    </span>
                   </CommandItem>
                   <CommandItem
                     onSelect={() => setSearch('date:"> 2 days ago"')}
                   >
-                    <Button variant="secondary" size="xs" className="mr-2">
+                    <span
+                      className={cn(
+                        "mr-2",
+                        buttonVariants({ variant: "secondary", size: "xs" }),
+                      )}
+                    >
                       date:&quot;&gt; 2 days ago&quot;
-                    </Button>
+                    </span>
                   </CommandItem>
                   <CommandItem onSelect={() => setSearch('date:"> last week"')}>
-                    <Button variant="secondary" size="xs" className="mr-2">
+                    <span
+                      className={cn(
+                        "mr-2",
+                        buttonVariants({ variant: "secondary", size: "xs" }),
+                      )}
+                    >
                       date:&quot;&gt; last week&quot;
-                    </Button>
+                    </span>
                   </CommandItem>
                   <CommandItem
                     onSelect={() => setSearch('date:">=25/10/2023"')}
                   >
-                    <Button variant="secondary" size="xs" className="mr-2">
+                    <span
+                      className={cn(
+                        "mr-2",
+                        buttonVariants({ variant: "secondary", size: "xs" }),
+                      )}
+                    >
                       date:&quot;&gt;=25/10/2023&quot;
-                    </Button>
+                    </span>
                   </CommandItem>
                 </>
               )}
@@ -256,16 +310,31 @@ export default function Search() {
 
           {page === "theme" && (
             <CommandGroup heading="Change Theme">
-              <CommandItem onSelect={() => setTheme("light")} className="group">
+              <CommandItem
+                onSelect={() => {
+                  setTheme("light");
+                  onClose();
+                }}
+                className="group"
+              >
                 <MoonIcon className="mr-2" />
                 <span>Change Theme to Light</span>
               </CommandItem>
-              <CommandItem onSelect={() => setTheme("dark")} className="group">
+              <CommandItem
+                onSelect={() => {
+                  setTheme("dark");
+                  onClose();
+                }}
+                className="group"
+              >
                 <SunIcon className="mr-2" />
                 <span>Change Theme to Dark</span>
               </CommandItem>
               <CommandItem
-                onSelect={() => setTheme("system")}
+                onSelect={() => {
+                  setTheme("system");
+                  onClose();
+                }}
                 className="group"
               >
                 <DesktopIcon className="mr-2" />
