@@ -15,7 +15,6 @@ import {
   CommandList,
 } from "@/components/ui/command";
 import {
-  ArrowRightIcon,
   DesktopIcon,
   MoonIcon,
   PersonIcon,
@@ -47,6 +46,12 @@ export default function Search() {
     return () => document.removeEventListener("keydown", down);
   }, []);
 
+  const onClose = () => {
+    setSearch("");
+    setPages([]);
+    setOpen(false);
+  };
+
   return (
     <>
       <Button
@@ -62,20 +67,31 @@ export default function Search() {
           <span className="text-xs">⌘</span>K
         </kbd>
       </Button>
-      <CommandDialog open={open} onOpenChange={setOpen}>
+      <CommandDialog open={open} onOpenChange={onClose}>
         <CommandInput
+          autoFocus
           value={search}
           onValueChange={setSearch}
           placeholder="What do you need?"
         />
         <div className="flex space-x-2 p-3">
-          <Button onClick={() => setPages([])} variant="secondary" size="xs">
+          <Button
+            onClick={() => {
+              setPages([]);
+              setSearch("");
+            }}
+            variant="secondary"
+            size="xs"
+          >
             Home
           </Button>
 
           {!!page && (
             <Button
-              onClick={() => setPages([...pages, page])}
+              onClick={() => {
+                setPages([...pages, page]);
+                setSearch("");
+              }}
               variant="secondary"
               size="xs"
               className="capitalize"
@@ -92,10 +108,6 @@ export default function Search() {
                 <CommandItem onSelect={() => setPages([...pages, "patients"])}>
                   <PersonIcon className="mr-2" />
                   <span>Search Patients...</span>
-                </CommandItem>
-                <CommandItem>
-                  <ArrowRightIcon className="mr-2" />
-                  <span>Add New Patient</span>
                 </CommandItem>
               </CommandGroup>
               <CommandGroup heading="Settings">
@@ -144,36 +156,90 @@ export default function Search() {
 
           {page === "patients" && (
             <CommandGroup heading="Suggested Filters">
-              <CommandItem>
-                <Button variant="secondary" size="xs" className="mr-2">
-                  gender:
-                </Button>
-                <span>patient gender</span>
+              {!search ? (
+                <CommandItem onSelect={() => setSearch("gender:")}>
+                  <div className="flex w-full items-center justify-between">
+                    <div>
+                      <Button variant="secondary" size="xs" className="mr-2">
+                        gender:
+                      </Button>
+                      <span>patient gender</span>
+                    </div>
+                    <span className="text-muted-foreground">gender:male</span>
+                  </div>
+                </CommandItem>
+              ) : (
+                <>
+                  <CommandItem onSelect={() => setSearch("gender:male")}>
+                    <Button variant="secondary" size="xs" className="mr-2">
+                      gender:male
+                    </Button>
+                  </CommandItem>
+                  <CommandItem onSelect={() => setSearch("gender:female")}>
+                    <Button variant="secondary" size="xs" className="mr-2">
+                      gender:female
+                    </Button>
+                  </CommandItem>
+                  <CommandItem onSelect={() => setSearch("gender:unknown")}>
+                    <Button variant="secondary" size="xs" className="mr-2">
+                      gender:unkwown
+                    </Button>
+                  </CommandItem>
+                </>
+              )}
+              <CommandItem onSelect={() => setSearch("age:")}>
+                <div className="flex w-full items-center justify-between">
+                  <div>
+                    <Button variant="secondary" size="xs" className="mr-2">
+                      age:
+                    </Button>
+                    <span>patient age or range</span>
+                  </div>
+                  <span className="text-muted-foreground">age:22</span>
+                </div>
               </CommandItem>
-              <CommandItem>
-                <Button variant="secondary" size="xs" className="mr-2">
-                  age range:
-                </Button>
-                <span>patient age range</span>
-              </CommandItem>
-              <CommandItem>
-                <Button variant="secondary" size="xs" className="mr-2">
-                  registration date:
-                </Button>
-                <span>date of registration</span>
-              </CommandItem>
-              <CommandItem>
-                <Button variant="secondary" size="xs" className="mr-2">
-                  visit:
-                </Button>
-                <span>type of visit</span>
-              </CommandItem>
-              <CommandItem>
-                <Button variant="secondary" size="xs" className="mr-2">
-                  tag:
-                </Button>
-                <span>category of tag</span>
-              </CommandItem>
+              {!search ? (
+                <CommandItem onSelect={() => setSearch("date:")}>
+                  <div className="flex w-full items-center justify-between">
+                    <div>
+                      <Button variant="secondary" size="xs" className="mr-2">
+                        date:
+                      </Button>
+                      <span>date of registration</span>
+                    </div>
+                    <span className="text-muted-foreground">
+                      date:yesterday
+                    </span>
+                  </div>
+                </CommandItem>
+              ) : (
+                <>
+                  <CommandItem onSelect={() => setSearch("date:yesterday")}>
+                    <Button variant="secondary" size="xs" className="mr-2">
+                      date:yesterday
+                    </Button>
+                  </CommandItem>
+                  <CommandItem
+                    onSelect={() => setSearch('date:"> 2 days ago"')}
+                  >
+                    <Button variant="secondary" size="xs" className="mr-2">
+                      date:&quot;&gt; 2 days ago&quot;
+                    </Button>
+                  </CommandItem>
+                  <CommandItem onSelect={() => setSearch('date:"> last week"')}>
+                    <Button variant="secondary" size="xs" className="mr-2">
+                      date:&quot;&gt; last week&quot;
+                    </Button>
+                  </CommandItem>
+                  <CommandItem
+                    onSelect={() => setSearch('date:">=25/10/2023"')}
+                  >
+                    <Button variant="secondary" size="xs" className="mr-2">
+                      date:&quot;&gt;=25/10/2023&quot;
+                    </Button>
+                  </CommandItem>
+                </>
+              )}
             </CommandGroup>
           )}
 
