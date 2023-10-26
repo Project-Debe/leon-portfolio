@@ -2,8 +2,14 @@
 
 import { useEffect, useRef, useState } from "react";
 import { useTheme } from "next-themes";
+import {
+  ArrowRightIcon,
+  DesktopIcon,
+  MoonIcon,
+  PersonIcon,
+  SunIcon,
+} from "@radix-ui/react-icons";
 
-import { cn } from "@/lib/utils";
 import Logo from "@/components/icons/Logo";
 import { Button, buttonVariants } from "@/components/ui/button";
 import {
@@ -14,12 +20,8 @@ import {
   CommandItem,
   CommandList,
 } from "@/components/ui/command";
-import {
-  DesktopIcon,
-  MoonIcon,
-  PersonIcon,
-  SunIcon,
-} from "@radix-ui/react-icons";
+import { cn } from "@/lib/utils";
+import Patients from "./Patients";
 
 const exampleQueries = [
   "What causes Acute cholecystitis?",
@@ -27,13 +29,20 @@ const exampleQueries = [
   "Similarities and Differences between Flu and COVID-19​",
 ];
 
+type Page = {
+  name: string;
+  value: string;
+};
+
 export default function Search() {
   const { setTheme } = useTheme();
   const inputRef = useRef<HTMLInputElement>(null);
   const [open, setOpen] = useState(false);
   const [search, setSearch] = useState("");
-  const [pages, setPages] = useState<Array<string>>([]);
-  const page = pages[pages.length - 1];
+  const [pages, setPages] = useState<Array<Page>>([
+    { name: "home", value: "Home" },
+  ]);
+  const currentPage = pages[pages.length - 1];
 
   useEffect(() => {
     const down = (e: KeyboardEvent) => {
@@ -49,11 +58,16 @@ export default function Search() {
 
   useEffect(() => {
     inputRef.current?.focus();
-  }, [page]);
+  }, [currentPage]);
 
   const onClose = () => {
     setSearch("");
     setOpen(false);
+  };
+
+  const selected = (idx: number) => {
+    setPages(pages.slice(0, idx + 1));
+    setSearch("");
   };
 
   return (
@@ -71,7 +85,7 @@ export default function Search() {
           <span className="text-xs">⌘</span>K
         </kbd>
       </Button>
-      <CommandDialog page={page} open={open} onOpenChange={onClose}>
+      <CommandDialog page={currentPage.name} open={open} onOpenChange={onClose}>
         <CommandInput
           ref={inputRef}
           value={search}
@@ -79,44 +93,42 @@ export default function Search() {
           placeholder="What do you need?"
         />
         <div className="flex space-x-2 p-3">
-          <Button
-            onClick={() => {
-              setPages([]);
-              setSearch("");
-            }}
-            variant="secondary"
-            size="xs"
-          >
-            Home
-          </Button>
-
-          {!!page && (
+          {pages.map(({ name, value }, idx) => (
             <Button
-              onClick={() => {
-                setPages([...pages, page]);
-                setSearch("");
-              }}
+              key={name}
+              onClick={() => selected(idx)}
               variant="secondary"
               size="xs"
               className="capitalize"
             >
-              {page}
+              {value}
             </Button>
-          )}
+          ))}
         </div>
         <CommandList>
           <CommandEmpty>No results found.</CommandEmpty>
-          {!page && (
+          {currentPage.name === "home" && (
             <>
               <CommandGroup heading="Patients">
-                <CommandItem onSelect={() => setPages([...pages, "patients"])}>
+                <CommandItem
+                  onSelect={() =>
+                    setPages([
+                      ...pages,
+                      { name: "patients", value: "Patients" },
+                    ])
+                  }
+                >
                   <PersonIcon className="mr-2" />
                   <span>Search Patients...</span>
                 </CommandItem>
               </CommandGroup>
               <CommandGroup heading="Settings">
                 {!search ? (
-                  <CommandItem onSelect={() => setPages([...pages, "theme"])}>
+                  <CommandItem
+                    onSelect={() =>
+                      setPages([...pages, { name: "theme", value: "theme" }])
+                    }
+                  >
                     <DesktopIcon className="mr-2" />
                     <span>Change Theme...</span>
                   </CommandItem>
@@ -148,7 +160,9 @@ export default function Search() {
               </CommandGroup>
               <CommandGroup heading="Help">
                 <CommandItem
-                  onSelect={() => setPages([...pages, "help"])}
+                  onSelect={() =>
+                    setPages([...pages, { name: "help", value: "Help" }])
+                  }
                   className="group"
                 >
                   <Logo className="mr-1 !h-6 !w-6 transition-transform duration-300 group-hover:-rotate-[360deg] group-hover:scale-125" />
@@ -158,7 +172,7 @@ export default function Search() {
             </>
           )}
 
-          {page === "patients" && (
+          {/* {currentPage.name === "patients" && (
             <CommandGroup heading="Suggested Filters">
               {!search ? (
                 <CommandItem onSelect={() => setSearch("gender:")}>
@@ -206,7 +220,7 @@ export default function Search() {
                         buttonVariants({ variant: "secondary", size: "xs" }),
                       )}
                     >
-                      gender:unkwown
+                      gender:unknown
                     </span>
                   </CommandItem>
                 </>
@@ -225,6 +239,24 @@ export default function Search() {
                     <span>patient age or range</span>
                   </div>
                   <span className="text-muted-foreground">age:22</span>
+                </div>
+              </CommandItem>
+              <CommandItem onSelect={() => setSearch("email:")}>
+                <div className="flex w-full items-center justify-between">
+                  <div>
+                    <span
+                      className={cn(
+                        "mr-2",
+                        buttonVariants({ variant: "secondary", size: "xs" }),
+                      )}
+                    >
+                      email:
+                    </span>
+                    <span>an email address</span>
+                  </div>
+                  <span className="text-muted-foreground">
+                    email:name@example.com
+                  </span>
                 </div>
               </CommandItem>
               {!search ? (
@@ -295,9 +327,13 @@ export default function Search() {
                 </>
               )}
             </CommandGroup>
+          )} */}
+
+          {currentPage.name === "patients" && (
+            <Patients pages={pages} setPages={setPages} setSearch={setSearch} />
           )}
 
-          {page === "help" && (
+          {currentPage.name === "help" && (
             <CommandGroup heading="Examples">
               {exampleQueries.map((query) => (
                 <CommandItem key={query} className="group">
@@ -308,7 +344,7 @@ export default function Search() {
             </CommandGroup>
           )}
 
-          {page === "theme" && (
+          {currentPage.name === "theme" && (
             <CommandGroup heading="Change Theme">
               <CommandItem
                 onSelect={() => {
@@ -339,6 +375,27 @@ export default function Search() {
               >
                 <DesktopIcon className="mr-2" />
                 <span>Change Theme to System</span>
+              </CommandItem>
+            </CommandGroup>
+          )}
+
+          {currentPage.name === "patient" && (
+            <CommandGroup heading={`Navigation (${currentPage.value})`}>
+              <CommandItem>
+                <ArrowRightIcon className="mr-2" />
+                <span>New encounter</span>
+              </CommandItem>
+              <CommandItem>
+                <ArrowRightIcon className="mr-2" />
+                <span>View encounter history</span>
+              </CommandItem>
+              <CommandItem>
+                <ArrowRightIcon className="mr-2" />
+                <span>Edit information</span>
+              </CommandItem>
+              <CommandItem>
+                <ArrowRightIcon className="mr-2" />
+                <span>Book appointment</span>
               </CommandItem>
             </CommandGroup>
           )}
