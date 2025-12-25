@@ -28,6 +28,13 @@ export default defineType({
             },
         }),
         defineField({
+            name: 'images',
+            title: 'Images',
+            type: 'array',
+            of: [{ type: 'image', options: { hotspot: true } }],
+            description: 'Upload multiple images to enable the marquee effect.',
+        }),
+        defineField({
             name: 'description',
             title: 'Description',
             type: 'string',
