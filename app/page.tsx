@@ -1,6 +1,7 @@
 import Image from "next/image";
 import { client, urlFor } from "@/sanity/client";
 import Dropdown from "@/components/Dropdown";
+import ProjectGallery from "@/components/ProjectGallery";
 
 // Define interfaces for type safety
 interface Profile {
@@ -17,6 +18,7 @@ interface Project {
   title: string;
   slug: string;
   mainImage: any;
+  images?: any[];
   description: string;
   links: { type: string; url?: string }[];
   backgroundColor: string;
@@ -28,7 +30,7 @@ export const revalidate = 60;
 export default async function Homepage() {
   // Fetch data from Sanity
   const profile: Profile = await client.fetch(`*[_type == "profile"][0]`);
-  const projects: Project[] = await client.fetch(`*[_type == "project"]|order(order asc)`);
+  const projects: Project[] = await client.fetch(`*[_type == "project"]{..., "images": images[]}|order(order asc)`);
 
   return (
     <main className="landscape:flex">
@@ -94,7 +96,7 @@ export default async function Homepage() {
           </ul>
         </footer>
       </div>
-      <div className="order-1 flex-1 uppercase text-white">
+      <div className="order-1 flex-1 min-w-0 uppercase text-white">
         {projects?.map((project) => (
           <div
             key={project._id}
@@ -102,17 +104,11 @@ export default async function Homepage() {
             style={{ backgroundColor: project.backgroundColor || "#293241" }}
           >
             <div className={`w-full ${project.slug === 'mookh' ? 'landscape:w-[85vh] w-[85%]' : 'sm:w-full'}`}>
-              {project.mainImage && (
-                <div className="aspect-h-9 aspect-w-16 relative w-full">
-                  <Image
-                    src={urlFor(project.mainImage).url()}
-                    alt={project.title}
-                    fill
-                    className="object-contain"
-                    unoptimized
-                  />
-                </div>
-              )}
+              <ProjectGallery
+                images={project.images}
+                mainImage={project.mainImage}
+                title={project.title}
+              />
             </div>
             <div className="absolute right-6 top-6 flex items-center space-x-6 max-sm:text-sm">
               <p>{project.description}</p>

@@ -3,6 +3,10 @@
 @tailwind utilities;
 
 @layer base {
+  body {
+    @apply overflow-x-hidden;
+  }
+
   a {
     @apply relative inline-block pb-1;
   }
