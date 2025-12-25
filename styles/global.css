@@ -1,0 +1,144 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  a {
+    @apply relative inline-block pb-1;
+  }
+
+  a:after {
+    @apply absolute bottom-0 left-0 h-px w-full origin-bottom-right scale-x-0 bg-white transition-transform duration-300 content-[''];
+  }
+
+  a:hover:after {
+    @apply origin-bottom-left scale-x-100;
+  }
+}
+
+@layer components {
+  .amplify-lights-toggle {
+    display: flex;
+    justify-content: center;
+    width: 140px;
+    height: 32px;
+    position: relative;
+    top: 216px;
+    position: absolute;
+    left: 50%;
+    z-index: 3;
+    transform: translate(-50%);
+  }
+
+  .amplify-lights-toggle img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transition: opacity 0.45s cubic-bezier(0.6, 0.6, 0, 1);
+    transition-delay: 0.1s;
+    pointer-events: none;
+  }
+
+  .amplify-lights-toggle img:nth-child(2) {
+    opacity: 0;
+  }
+
+  .amplify-lights-toggle-switch {
+    border-radius: 4px;
+    background: hsl(38, 22%, 94%);
+    box-shadow:
+      0 0 0 1px #70451a3d,
+      0 1px 2px #70451a0d,
+      2px 3px 5px #70451a29,
+      4px 6px 5px #70451a14,
+      8px 12px 8px #70451a14,
+      8px 0 0.5px #70451a33 inset,
+      10px 0 4px -6px #70451a33 inset;
+    width: 64px;
+    height: 32px;
+    position: relative;
+    transition:
+      box-shadow 0.45s cubic-bezier(0.6, 0.6, 0, 1),
+      background 0.45s cubic-bezier(0.6, 0.6, 0, 1);
+    transition-delay: 0.1s;
+  }
+
+  .amplify-lights-toggle-switch:before,
+  .amplify-lights-toggle-switch:after {
+    content: "";
+    border-radius: 4px;
+    width: 56px;
+    display: block;
+    height: 32px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translate(8px);
+    transition:
+      transform 0.45s cubic-bezier(0.6, 0.6, 0, 1),
+      opacity 0.45s cubic-bezier(0.6, 0.6, 0, 1);
+    transition-delay: 0.1s;
+  }
+
+  .amplify-lights-toggle-switch:before {
+    background: linear-gradient(
+        270deg,
+        #ebe7e0 0%,
+        #ebe7e0 49.89%,
+        #fbfaf9 53.59%
+      ),
+      #fbfaf9;
+    box-shadow: -1px 1px 1px #ffffff52 inset;
+  }
+
+  .amplify-lights-toggle-switch:after {
+    background: linear-gradient(
+        90deg,
+        #37322f 0%,
+        #37322f 49.89%,
+        #4a4340 53.59%
+      ),
+      #4a4340;
+    box-shadow:
+      -1px 1px 1px #ffffff14 inset,
+      0 1px #d6cfc214 inset;
+    opacity: 0;
+  }
+
+  .amplify-lights-toggle-dark .amplify-lights-toggle-switch {
+    border-radius: 4px;
+    background: hsl(18, 7%, 27%);
+    box-shadow:
+      0 0 0 1px #191615,
+      0 1px 2px #201e1d0d,
+      2px 3px 5px #201e1d29,
+      4px 6px 5px #201e1d14,
+      8px 12px 8px #201e1d14,
+      -8px 0 0.5px #201e1d80 inset,
+      -10px 0 4px -6px #201e1d80 inset,
+      0 1px #d6cfc214 inset;
+  }
+
+  .amplify-lights-toggle-dark .amplify-lights-toggle-switch:before,
+  .amplify-lights-toggle-dark .amplify-lights-toggle-switch:after {
+    transform: translate(0);
+  }
+
+  .amplify-lights-toggle-dark .amplify-lights-toggle-switch:before {
+    opacity: 0;
+  }
+
+  .amplify-lights-toggle-dark .amplify-lights-toggle-switch:after {
+    opacity: 1;
+  }
+
+  .amplify-lights-toggle-dark img:nth-child(1) {
+    opacity: 0;
+  }
+
+  .amplify-lights-toggle-dark img:nth-child(2) {
+    opacity: 1;
+  }
+}
