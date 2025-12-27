@@ -20,8 +20,9 @@ export default function ProjectGallery({ images, mainImage, title }: ProjectGall
                     {images!.map((image, index) => (
                         <img
                             key={image._key || index}
-                            src={urlFor(image).url()}
+                            src={urlFor(image).height(800).auto('format').quality(80).url()}
                             alt={`${title} - Image ${index + 1}`}
+                            loading="lazy"
                             className="h-[40vh] sm:h-[60vh] w-auto mx-4 object-contain"
                         />
                     ))}
