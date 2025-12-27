@@ -35,23 +35,23 @@ export default async function Homepage() {
   return (
     <main className="landscape:flex">
       <div className="sticky top-0 order-2 flex h-[90vh] max-w-[32.25rem] flex-col justify-between space-y-4 bg-[#0C0C0C] px-6 py-8 text-white landscape:h-screen">
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center space-x-2 animate-view [animation-delay:100ms]">
           <div className="h-4 w-4 animate-pulse rounded-full bg-[#F45500]" />
           <p className="text-[1.375rem]/none tracking-tight">
             {profile?.name || "Leon Omondi Onyango"}
           </p>
         </div>
-        <h1 className="text-4xl/[2.375rem] tracking-tight">
+        <h1 className="text-4xl/[2.375rem] tracking-tight animate-view [animation-delay:200ms]">
           {profile?.role || "Independent digital designer"} © <br />
           <span className="text-[#9D9D9D]">
             {profile?.tagline || "6+ years working on digital interfaces for start-ups."}
           </span>
         </h1>
-        <p className="text-xl/6 tracking-tight">
+        <p className="text-xl/6 tracking-tight animate-view [animation-delay:300ms]">
           {profile?.bio ||
             "Achieving simplicity involves understanding user goals, automating processes, offering limited options, and bridging the gap between user intentions and product capabilities."}
         </p>
-        <ul className="text-xl/[normal] tracking-tight text-[#9D9D9D]">
+        <ul className="text-xl/[normal] tracking-tight text-[#9D9D9D] animate-view [animation-delay:400ms]">
           {profile?.skills?.map((skill, index) => (
             <li key={index} className={index === 0 ? "font-medium text-white" : ""}>{skill}</li>
           )) || (
@@ -63,7 +63,7 @@ export default async function Homepage() {
               </>
             )}
         </ul>
-        <footer>
+        <footer className="animate-view [animation-delay:500ms]">
           <ul className="flex space-x-6 text-xl/none tracking-tight">
             {profile?.socialLinks?.map((link, index) => (
               <li key={index}>

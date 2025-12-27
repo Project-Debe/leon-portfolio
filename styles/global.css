@@ -87,23 +87,19 @@
   }
 
   .amplify-lights-toggle-switch:before {
-    background: linear-gradient(
-        270deg,
+    background: linear-gradient(270deg,
         #ebe7e0 0%,
         #ebe7e0 49.89%,
-        #fbfaf9 53.59%
-      ),
+        #fbfaf9 53.59%),
       #fbfaf9;
     box-shadow: -1px 1px 1px #ffffff52 inset;
   }
 
   .amplify-lights-toggle-switch:after {
-    background: linear-gradient(
-        90deg,
+    background: linear-gradient(90deg,
         #37322f 0%,
         #37322f 49.89%,
-        #4a4340 53.59%
-      ),
+        #4a4340 53.59%),
       #4a4340;
     box-shadow:
       -1px 1px 1px #ffffff14 inset,
@@ -144,5 +140,23 @@
 
   .amplify-lights-toggle-dark img:nth-child(2) {
     opacity: 1;
+  }
+
+  .animate-view {
+    animation: fadeSlideBlurIn 0.8s ease-out both;
+  }
+
+  @keyframes fadeSlideBlurIn {
+    from {
+      opacity: 0.01;
+      transform: translateY(20px);
+      filter: blur(10px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+      filter: blur(0);
+    }
   }
 }
