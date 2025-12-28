@@ -64,7 +64,7 @@ export default function RootLayout({
       className={cn("text-screen-sm landscape:text-screen", inter.variable)}
       suppressHydrationWarning
     >
-      <body>
+      <body className="overflow-x-hidden" suppressHydrationWarning>
         <Credits>{children}</Credits>
         <script
           type="application/ld+json"

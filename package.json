@@ -11,8 +11,13 @@
   "dependencies": {
     "@headlessui/react": "latest",
     "@heroicons/react": "latest",
+    "@portabletext/react": "^6.0.0",
+    "@portabletext/types": "^4.0.0",
     "@sanity/client": "^7.13.2",
+    "@sanity/icons": "^3.7.4",
     "@sanity/image-url": "^1.2.0",
+    "@sanity/orderable-document-list": "^1.4.1",
+    "@sanity/ui": "^3.1.11",
     "@sanity/vision": "^4.22.0",
     "@vercel/analytics": "^1.1.1",
     "clsx": "latest",
@@ -21,6 +26,7 @@
     "next-sanity": "^11.6.12",
     "react": "latest",
     "react-dom": "latest",
+    "react-fast-marquee": "^1.6.5",
     "sanity": "^4.22.0",
     "schema-dts": "^1.1.2",
     "sharp": "latest",
@@ -41,5 +47,6 @@
     "prettier-plugin-tailwindcss": "latest",
     "tailwindcss": "^3.4.17",
     "typescript": "latest"
-  }
+  },
+  "packageManager": "pnpm@10.8.0+sha512.0e82714d1b5b43c74610193cb20734897c1d00de89d0e18420aebc5977fa13d780a9cb05734624e81ebd81cc876cd464794850641c48b9544326b5622ca29971"
 }
