@@ -14,15 +14,24 @@ export default function ProjectGallery({ images, mainImage, title }: ProjectGall
     const hasMultipleImages = images && images.length > 1;
 
     if (hasMultipleImages) {
+        // Create a stable key based on image count to prevent stale animation state
+        const marqueeKey = `marquee-${images!.length}-${images![0]?._key || 'default'}`;
+
         return (
             <div className="w-full flex items-center overflow-hidden">
-                <Marquee speed={100} gradient={false} className="overflow-hidden py-4">
+                <Marquee
+                    key={marqueeKey}
+                    speed={100}
+                    gradient={false}
+                    pauseOnHover={false}
+                    pauseOnClick={false}
+                    className="overflow-hidden py-4"
+                >
                     {images!.map((image, index) => (
                         <img
                             key={image._key || index}
                             src={urlFor(image).height(800).auto('format').quality(80).url()}
                             alt={`${title} - Image ${index + 1}`}
-                            loading="lazy"
                             className="h-[40vh] sm:h-[60vh] w-auto mx-4 object-contain"
                         />
                     ))}
