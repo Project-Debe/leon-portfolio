@@ -30,7 +30,7 @@ export const revalidate = 60;
 export default async function Homepage() {
   // Fetch data from Sanity
   const profile: Profile = await client.fetch(`*[_type == "profile"][0]`);
-  const projects: Project[] = await client.fetch(`*[_type == "project"]{..., "images": images[]}|order(order asc)`);
+  const projects: Project[] = await client.fetch(`*[_type == "project" && isPublished != false]{..., "images": images[]}|order(orderRank asc)`);
 
   return (
     <main className="landscape:flex">
