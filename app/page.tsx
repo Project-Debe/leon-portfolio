@@ -2,6 +2,7 @@ import Image from "next/image";
 import { client, urlFor } from "@/sanity/client";
 import Dropdown from "@/components/Dropdown";
 import ProjectGallery from "@/components/ProjectGallery";
+import ProjectCardWrapper from "@/components/ProjectCardWrapper";
 
 // Define interfaces for type safety
 interface Profile {
@@ -20,6 +21,7 @@ interface Project {
   mainImage: any;
   images?: any[];
   description: string;
+  context?: any[];
   links: { type: string; url?: string }[];
   backgroundColor: string;
 }
@@ -98,25 +100,26 @@ export default async function Homepage() {
       </div>
       <div className="order-1 flex-1 min-w-0 uppercase text-white">
         {projects?.map((project) => (
-          <div
-            key={project._id}
-            className="sticky top-0 grid h-[66.666666vh] place-items-center overflow-hidden px-6 sm:h-screen"
-            style={{ backgroundColor: project.backgroundColor || "#293241" }}
-          >
-            <div className={`w-full ${project.slug === 'mookh' ? 'landscape:w-[85vh] w-[85%]' : 'sm:w-full'}`}>
-              <ProjectGallery
-                images={project.images}
-                mainImage={project.mainImage}
-                title={project.title}
-              />
+          <ProjectCardWrapper key={project._id} context={project.context}>
+            <div
+              className="sticky top-0 grid h-[66.666666vh] place-items-center overflow-hidden px-6 sm:h-screen"
+              style={{ backgroundColor: project.backgroundColor || "#293241" }}
+            >
+              <div className={`w-full ${project.slug === 'mookh' ? 'landscape:w-[85vh] w-[85%]' : 'sm:w-full'}`}>
+                <ProjectGallery
+                  images={project.images}
+                  mainImage={project.mainImage}
+                  title={project.title}
+                />
+              </div>
+              <div className="absolute right-6 top-6 flex items-center space-x-6 max-sm:text-sm">
+                <p>{project.description}</p>
+                {project.links && project.links.length > 0 && (
+                  <Dropdown items={project.links as any} />
+                )}
+              </div>
             </div>
-            <div className="absolute right-6 top-6 flex items-center space-x-6 max-sm:text-sm">
-              <p>{project.description}</p>
-              {project.links && project.links.length > 0 && (
-                <Dropdown items={project.links as any} />
-              )}
-            </div>
-          </div>
+          </ProjectCardWrapper>
         ))}
         {(!projects || projects.length === 0) && (
           <div className="h-screen w-full flex items-center justify-center bg-[#293241]">

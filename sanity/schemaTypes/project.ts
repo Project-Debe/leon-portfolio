@@ -67,6 +67,26 @@ export default defineType({
             type: 'string',
         }),
         defineField({
+            name: 'context',
+            title: 'Hover Context',
+            type: 'array',
+            of: [
+                {
+                    type: 'block',
+                    styles: [{ title: 'Normal', value: 'normal' }],
+                    marks: {
+                        decorators: [
+                            { title: 'Bold', value: 'strong' },
+                            { title: 'Italic', value: 'em' },
+                        ],
+                        annotations: [],
+                    },
+                    lists: [{ title: 'Bullet', value: 'bullet' }],
+                },
+            ],
+            description: 'Rich text displayed in the floating tooltip when hovering over this project',
+        }),
+        defineField({
             name: 'links',
             title: 'Links',
             type: 'array',
