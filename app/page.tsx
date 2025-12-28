@@ -3,6 +3,7 @@ import { client, urlFor } from "@/sanity/client";
 import Dropdown from "@/components/Dropdown";
 import ProjectGallery from "@/components/ProjectGallery";
 import ProjectCardWrapper from "@/components/ProjectCardWrapper";
+import PageWrapper from "@/components/PageWrapper";
 
 // Define interfaces for type safety
 interface Profile {
@@ -34,99 +35,115 @@ export default async function Homepage() {
   const profile: Profile = await client.fetch(`*[_type == "profile"][0]`);
   const projects: Project[] = await client.fetch(`*[_type == "project" && isPublished != false]{..., "images": images[]}|order(orderRank asc)`);
 
+  // Collect all image URLs for preloading
+  const imageUrls: string[] = [];
+  projects?.forEach((project) => {
+    if (project.images && project.images.length > 1) {
+      // For marquee projects, add all images
+      project.images.forEach((image: any) => {
+        imageUrls.push(urlFor(image).height(800).auto('format').quality(80).url());
+      });
+    } else if (project.mainImage) {
+      // For single image projects
+      imageUrls.push(urlFor(project.mainImage).url());
+    }
+  });
+
   return (
-    <main className="landscape:flex">
-      <div className="sticky top-0 order-2 flex h-[90vh] max-w-[32.25rem] flex-col justify-between space-y-4 bg-[#0C0C0C] px-6 py-8 text-white landscape:h-screen">
-        <div className="flex items-center space-x-2 animate-view [animation-delay:100ms]">
-          <div className="h-4 w-4 animate-pulse rounded-full bg-[#F45500]" />
-          <p className="text-[1.375rem]/none tracking-tight">
-            {profile?.name || "Leon Omondi Onyango"}
+    <PageWrapper imageUrls={imageUrls}>
+      <main className="landscape:flex">
+        <div className="sticky top-0 order-2 flex h-[90vh] max-w-[32.25rem] flex-col justify-between space-y-4 bg-[#0C0C0C] px-6 py-8 text-white landscape:h-screen">
+          <div className="flex items-center space-x-2 animate-view [animation-delay:100ms]">
+            <div className="h-4 w-4 animate-pulse rounded-full bg-[#F45500]" />
+            <p className="text-[1.375rem]/none tracking-tight">
+              {profile?.name || "Leon Omondi Onyango"}
+            </p>
+          </div>
+          <h1 className="text-4xl/[2.375rem] tracking-tight animate-view [animation-delay:200ms]">
+            {profile?.role || "Independent digital designer"} © <br />
+            <span className="text-[#9D9D9D]">
+              {profile?.tagline || "6+ years working on digital interfaces for start-ups."}
+            </span>
+          </h1>
+          <p className="text-xl/6 tracking-tight animate-view [animation-delay:300ms]">
+            {profile?.bio ||
+              "Achieving simplicity involves understanding user goals, automating processes, offering limited options, and bridging the gap between user intentions and product capabilities."}
           </p>
-        </div>
-        <h1 className="text-4xl/[2.375rem] tracking-tight animate-view [animation-delay:200ms]">
-          {profile?.role || "Independent digital designer"} © <br />
-          <span className="text-[#9D9D9D]">
-            {profile?.tagline || "6+ years working on digital interfaces for start-ups."}
-          </span>
-        </h1>
-        <p className="text-xl/6 tracking-tight animate-view [animation-delay:300ms]">
-          {profile?.bio ||
-            "Achieving simplicity involves understanding user goals, automating processes, offering limited options, and bridging the gap between user intentions and product capabilities."}
-        </p>
-        <ul className="text-xl/[normal] tracking-tight text-[#9D9D9D] animate-view [animation-delay:400ms]">
-          {profile?.skills?.map((skill, index) => (
-            <li key={index} className={index === 0 ? "font-medium text-white" : ""}>{skill}</li>
-          )) || (
-              <>
-                <li className="font-medium text-white">Product (UX/UI) Design</li>
-                <li>Design Systems</li>
-                <li>Identity + Visual Language</li>
-                <li>Illustration</li>
-              </>
-            )}
-        </ul>
-        <footer className="animate-view [animation-delay:500ms]">
-          <ul className="flex space-x-6 text-xl/none tracking-tight">
-            {profile?.socialLinks?.map((link, index) => (
-              <li key={index}>
-                <a href={link.url} target="_blank" rel="noreferrer">
-                  {link.platform}
-                </a>
-              </li>
+          <ul className="text-xl/[normal] tracking-tight text-[#9D9D9D] animate-view [animation-delay:400ms]">
+            {profile?.skills?.map((skill, index) => (
+              <li key={index} className={index === 0 ? "font-medium text-white" : ""}>{skill}</li>
             )) || (
                 <>
-                  <li>
-                    <a href="/resume.pdf" target="_blank" rel="noreferrer">
-                      About
-                    </a>
-                  </li>
-                  <li>
-                    <a href="mailto:omondi2leon@gmail.com">Email</a>
-                  </li>
-                  <li>
-                    <a href="https://www.behance.net/leonomondi" target="_blank" rel="noreferrer">
-                      Behance
-                    </a>
-                  </li>
-                  <li>
-                    <a href="https://linkedin.com/in/leon-omondi-6a3a77101" target="_blank" rel="noreferrer">
-                      LinkedIn
-                    </a>
-                  </li>
+                  <li className="font-medium text-white">Product (UX/UI) Design</li>
+                  <li>Design Systems</li>
+                  <li>Identity + Visual Language</li>
+                  <li>Illustration</li>
                 </>
               )}
           </ul>
-        </footer>
-      </div>
-      <div className="order-1 flex-1 min-w-0 uppercase text-white">
-        {projects?.map((project) => (
-          <ProjectCardWrapper key={project._id} context={project.context}>
-            <div
-              className="sticky top-0 grid h-[66.666666vh] place-items-center overflow-hidden px-6 sm:h-screen"
-              style={{ backgroundColor: project.backgroundColor || "#293241" }}
-            >
-              <div className={`w-full ${project.slug === 'mookh' ? 'landscape:w-[85vh] w-[85%]' : 'sm:w-full'}`}>
-                <ProjectGallery
-                  images={project.images}
-                  mainImage={project.mainImage}
-                  title={project.title}
-                />
-              </div>
-              <div className="absolute right-6 top-6 flex items-center space-x-6 max-sm:text-sm">
-                <p>{project.description}</p>
-                {project.links && project.links.length > 0 && (
-                  <Dropdown items={project.links as any} />
+          <footer className="animate-view [animation-delay:500ms]">
+            <ul className="flex space-x-6 text-xl/none tracking-tight">
+              {profile?.socialLinks?.map((link, index) => (
+                <li key={index}>
+                  <a href={link.url} target="_blank" rel="noreferrer">
+                    {link.platform}
+                  </a>
+                </li>
+              )) || (
+                  <>
+                    <li>
+                      <a href="/resume.pdf" target="_blank" rel="noreferrer">
+                        About
+                      </a>
+                    </li>
+                    <li>
+                      <a href="mailto:omondi2leon@gmail.com">Email</a>
+                    </li>
+                    <li>
+                      <a href="https://www.behance.net/leonomondi" target="_blank" rel="noreferrer">
+                        Behance
+                      </a>
+                    </li>
+                    <li>
+                      <a href="https://linkedin.com/in/leon-omondi-6a3a77101" target="_blank" rel="noreferrer">
+                        LinkedIn
+                      </a>
+                    </li>
+                  </>
                 )}
+            </ul>
+          </footer>
+        </div>
+        <div className="order-1 flex-1 min-w-0 uppercase text-white">
+          {projects?.map((project) => (
+            <ProjectCardWrapper key={project._id} context={project.context}>
+              <div
+                className="sticky top-0 grid h-[66.666666vh] place-items-center overflow-hidden px-6 sm:h-screen"
+                style={{ backgroundColor: project.backgroundColor || "#293241" }}
+              >
+                <div className={`w-full ${project.slug === 'mookh' ? 'landscape:w-[85vh] w-[85%]' : 'sm:w-full'}`}>
+                  <ProjectGallery
+                    images={project.images}
+                    mainImage={project.mainImage}
+                    title={project.title}
+                  />
+                </div>
+                <div className="absolute right-6 top-6 flex items-center space-x-6 max-sm:text-sm">
+                  <p>{project.description}</p>
+                  {project.links && project.links.length > 0 && (
+                    <Dropdown items={project.links as any} />
+                  )}
+                </div>
               </div>
+            </ProjectCardWrapper>
+          ))}
+          {(!projects || projects.length === 0) && (
+            <div className="h-screen w-full flex items-center justify-center bg-[#293241]">
+              <p>No projects found. Please add content in Sanity Studio.</p>
             </div>
-          </ProjectCardWrapper>
-        ))}
-        {(!projects || projects.length === 0) && (
-          <div className="h-screen w-full flex items-center justify-center bg-[#293241]">
-            <p>No projects found. Please add content in Sanity Studio.</p>
-          </div>
-        )}
-      </div>
-    </main>
+          )}
+        </div>
+      </main>
+    </PageWrapper>
   );
 }
